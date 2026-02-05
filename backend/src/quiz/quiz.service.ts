@@ -1,29 +1,114 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
-import { jobs, quizzes } from './quiz.data'
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common'
+import { SupabaseService } from '../supabase/supabase.service'
+import { jobs, quizzes, type JobCard, type Quiz } from './quiz.data'
 
 @Injectable()
 export class QuizService {
-  getJobs() {
-    return jobs
+  constructor(private readonly supabaseService: SupabaseService) {}
+
+  async getJobs(): Promise<JobCard[]> {
+    const client = this.supabaseService.getClient()
+    if (!client) {
+      throw new InternalServerErrorException('Supabase not configured')
+    }
+
+    const { data, error } = await client
+      .from('jobs')
+      .select('id,title,level,area,location,status,quiz_id,summary')
+      .order('title', { ascending: true })
+
+    if (error) {
+      console.error('Supabase jobs error:', error)
+      throw new InternalServerErrorException('Failed to load jobs')
+    }
+
+    return (data ?? []).map((job) => ({
+      id: job.id,
+      title: job.title,
+      level: job.level,
+      area: job.area,
+      location: job.location,
+      status: job.status,
+      quizId: job.quiz_id ?? undefined,
+      summary: job.summary,
+    }))
   }
 
-  getJob(jobId: string) {
-    const job = jobs.find((item) => item.id === jobId)
-    if (!job) {
+  async getJob(jobId: string): Promise<JobCard> {
+    const client = this.supabaseService.getClient()
+    if (!client) {
+      throw new InternalServerErrorException('Supabase not configured')
+    }
+
+    const { data, error } = await client
+      .from('jobs')
+      .select('id,title,level,area,location,status,quiz_id,summary')
+      .eq('id', jobId)
+      .single()
+
+    if (error || !data) {
+      if (error) {
+        console.error('Supabase job error:', error)
+      }
       throw new NotFoundException('Job not found')
     }
-    return job
+
+    return {
+      id: data.id,
+      title: data.title,
+      level: data.level,
+      area: data.area,
+      location: data.location,
+      status: data.status,
+      quizId: data.quiz_id ?? undefined,
+      summary: data.summary,
+    }
   }
 
-  getQuizByJob(jobId: string) {
-    const job = this.getJob(jobId)
-    if (job.status !== 'active' || !job.quizId) {
+  async getQuizByJob(jobId: string): Promise<Quiz> {
+    const client = this.supabaseService.getClient()
+    if (!client) {
+      throw new InternalServerErrorException('Supabase not configured')
+    }
+
+    const { data, error } = await client
+      .from('jobs')
+      .select(
+        'id,status,quiz_id,quiz:quizzes(id,title,description,intro,time_limit_seconds,per_question_seconds,questions:questions(id,prompt,options,correct_index,position))',
+      )
+      .eq('id', jobId)
+      .single()
+
+    if (error || !data) {
+      if (error) {
+        console.error('Supabase quiz error:', error)
+      }
+      throw new NotFoundException('Job not found')
+    }
+
+    const quizRecord = Array.isArray(data.quiz) ? data.quiz[0] : data.quiz
+
+    if (data.status !== 'active' || !quizRecord) {
       throw new NotFoundException('Quiz not available for this job')
     }
-    const quiz = quizzes.find((item) => item.id === job.quizId)
-    if (!quiz) {
-      throw new NotFoundException('Quiz not found')
+
+    const questions = (quizRecord.questions ?? [])
+      .sort((a, b) => (a.position ?? 0) - (b.position ?? 0))
+      .map((question) => ({
+        id: question.id,
+        prompt: question.prompt,
+        options: question.options ?? [],
+        correctIndex: question.correct_index ?? 0,
+      }))
+
+    return {
+      id: quizRecord.id,
+      title: quizRecord.title,
+      description: quizRecord.description,
+      intro: quizRecord.intro ?? [],
+      timeLimitSeconds: quizRecord.time_limit_seconds,
+      perQuestionSeconds: quizRecord.per_question_seconds,
+      questions,
     }
-    return quiz
   }
 }
