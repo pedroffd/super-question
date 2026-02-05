@@ -68,6 +68,7 @@ function App() {
   const [answers, setAnswers] = useState<Array<number | null>>([])
   const [totalLeft, setTotalLeft] = useState(0)
   const [questionLeft, setQuestionLeft] = useState(0)
+  const [showPartial, setShowPartial] = useState(false)
 
   const autoAdvanceLock = useRef(0)
 
@@ -80,6 +81,11 @@ function App() {
       return answers[index] === question.correctIndex ? acc + 1 : acc
     }, 0)
   }, [answers, quiz])
+
+  const answeredCount = useMemo(
+    () => answers.filter((answer) => answer !== null).length,
+    [answers],
+  )
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme')
@@ -452,6 +458,45 @@ function App() {
               <div className="text-xs text-subtle">
                 When time expires, the question advances automatically.
               </div>
+              <Button
+                variant="secondary"
+                className="w-full"
+                onClick={() => setShowPartial((prev) => !prev)}
+              >
+                {showPartial ? 'Hide partial results' : 'View partial results'}
+              </Button>
+              {showPartial && (
+                <div className="rounded-lg border border-panel bg-panel p-4 text-sm text-muted">
+                  <p className="text-sm text-subtle">Progress</p>
+                  <p className="mt-2 text-2xl font-semibold text-app">
+                    {score} / {answeredCount}
+                  </p>
+                  <p className="text-xs text-subtle">
+                    {answeredCount} answered out of {totalQuestions}
+                  </p>
+                  <div className="mt-3 space-y-2 text-xs">
+                    {quiz.questions.map((question, index) => {
+                      if (answers[index] === null) return null
+                      const isCorrect = answers[index] === question.correctIndex
+                      return (
+                        <div
+                          key={question.id}
+                          className="flex items-center justify-between"
+                        >
+                          <span className="text-subtle">Q{index + 1}</span>
+                          <span
+                            className={
+                              isCorrect ? 'text-emerald-400' : 'text-rose-400'
+                            }
+                          >
+                            {isCorrect ? 'Correct' : 'Incorrect'}
+                          </span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
         </section>
