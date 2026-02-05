@@ -33,13 +33,13 @@ insert into quizzes (id, title, description, intro, time_limit_seconds, per_ques
 values
   (
     'fullstack-core',
-    'Preparação Fullstack Engineer',
-    'Questões baseadas no material de preparação para entrevista.',
+    'Fullstack Engineer Mock Quiz',
+    'Questions based on the interview prep material.',
     array[
-      'São 30 questões de múltipla escolha (5 opções).',
-      'O timer geral e o timer por questão rodam em paralelo.',
-      'Você pode avançar manualmente ou deixar o tempo expirar.',
-      'No fim, mostramos acertos e percentual.'
+      '30 multiple-choice questions (5 options each).',
+      'Overall and per-question timers run in parallel.',
+      'You can advance manually or wait for time to expire.',
+      'At the end, you see your score and percentage.'
     ],
     1800,
     60
@@ -61,7 +61,7 @@ values
     'Remote',
     'active',
     'fullstack-core',
-    'Simulado completo com conceitos essenciais de backend e frontend.'
+    'Complete mock test covering core backend and frontend concepts.'
   ),
   (
     'backend-engineer',
@@ -71,7 +71,7 @@ values
     'Remote',
     'coming-soon',
     null,
-    'Em breve: foco em sistemas distribuídos e performance.'
+    'Coming soon: distributed systems and performance focus.'
   ),
   (
     'frontend-engineer',
@@ -81,7 +81,7 @@ values
     'Remote',
     'coming-soon',
     null,
-    'Em breve: foco em UI, acessibilidade e performance.'
+    'Coming soon: UI, accessibility, and performance focus.'
   )
 on conflict (id) do update set
   title = excluded.title,
@@ -97,13 +97,13 @@ values
   (
     'q1',
     'fullstack-core',
-    'O que é o Event Loop no Node.js?',
+    'What is the Event Loop in Node.js?',
     array[
-      'Um mecanismo de múltiplas threads para paralelismo real.',
-      'Um mecanismo que organiza filas de callbacks em uma única thread.',
-      'Um gerenciador de processos do sistema operacional.',
-      'Um recurso exclusivo do navegador.',
-      'Uma fila dedicada apenas a Promises.'
+      'A multi-thread mechanism for real parallelism.',
+      'A mechanism that organizes callback queues on a single thread.',
+      'An operating system process manager.',
+      'A browser-only feature.',
+      'A queue dedicated only to Promises.'
     ],
     1,
     1
@@ -111,13 +111,13 @@ values
   (
     'q2',
     'fullstack-core',
-    'Qual a diferença principal entre Promise.then e async/await?',
+    'What is the main difference between Promise.then and async/await?',
     array[
-      'async/await é mais lento e deve ser evitado.',
-      'Promise.then não permite tratamento de erros.',
-      'async/await é açúcar sintático e melhora a legibilidade.',
-      'Promise.then é obrigatório em Node.js.',
-      'async/await só funciona com callbacks.'
+      'async/await is slower and should be avoided.',
+      'Promise.then does not allow error handling.',
+      'async/await is syntactic sugar and improves readability.',
+      'Promise.then is mandatory in Node.js.',
+      'async/await only works with callbacks.'
     ],
     2,
     2
@@ -125,13 +125,13 @@ values
   (
     'q3',
     'fullstack-core',
-    'Qual o impacto de código CPU-bound no Node.js?',
+    'What is the impact of CPU-bound code in Node.js?',
     array[
-      'Melhora a performance por usar cache interno.',
-      'Bloqueia o event loop e degrada a performance.',
-      'Cria mais threads automaticamente.',
-      'Só afeta requisições HTTP, não tarefas internas.',
-      'Não tem impacto, pois Node.js é multi-thread por padrão.'
+      'It improves performance by using internal cache.',
+      'It blocks the event loop and degrades performance.',
+      'It automatically creates more threads.',
+      'It only affects HTTP requests, not internal tasks.',
+      'It has no impact, since Node.js is multi-threaded by default.'
     ],
     1,
     3
@@ -139,13 +139,13 @@ values
   (
     'q4',
     'fullstack-core',
-    'Por que usar NestJS em projetos maiores?',
+    'Why use NestJS in larger projects?',
     array[
-      'Porque elimina a necessidade de testes.',
-      'Porque é o framework mais leve do mercado.',
-      'Porque impõe arquitetura opinativa, DI e modularização.',
-      'Porque não depende de TypeScript.',
-      'Porque não precisa de controllers.'
+      'Because it removes the need for tests.',
+      'Because it is the lightest framework.',
+      'Because it provides an opinionated architecture, DI, and modularization.',
+      'Because it does not depend on TypeScript.',
+      'Because it does not need controllers.'
     ],
     2,
     4
@@ -153,13 +153,13 @@ values
   (
     'q5',
     'fullstack-core',
-    'Guards, Pipes e Interceptors são usados para:',
+    'Guards, Pipes, and Interceptors are used for:',
     array[
-      'Autenticação, validação e logging/métricas.',
-      'Renderização de HTML, CSS e JS.',
-      'Gerar migrations automaticamente.',
-      'Criar containers Docker.',
-      'Configurar bancos NoSQL.'
+      'Authentication, validation, and logging/metrics.',
+      'Rendering HTML, CSS, and JS.',
+      'Generating migrations automatically.',
+      'Creating Docker containers.',
+      'Configuring NoSQL databases.'
     ],
     0,
     5
@@ -167,13 +167,13 @@ values
   (
     'q6',
     'fullstack-core',
-    'Quando usar MongoDB?',
+    'When should you use MongoDB?',
     array[
-      'Quando há joins complexos e integridade relacional.',
-      'Quando há dados semi-estruturados e alto volume de escrita.',
-      'Quando há necessidade de ACID estrito.',
-      'Quando o schema é rígido e não muda.',
-      'Quando o foco é em transações financeiras.'
+      'When you need complex joins and relational integrity.',
+      'When data is semi-structured and write-heavy.',
+      'When you need strict ACID.',
+      'When the schema is rigid and never changes.',
+      'When the focus is financial transactions.'
     ],
     1,
     6
@@ -181,13 +181,13 @@ values
   (
     'q7',
     'fullstack-core',
-    'Quando usar PostgreSQL?',
+    'When should you use PostgreSQL?',
     array[
-      'Quando precisa de transações e joins complexos.',
-      'Quando dados são semi-estruturados e sem schema.',
-      'Quando só há leitura eventual e sem consistência.',
-      'Quando a aplicação não precisa de índices.',
-      'Quando a escalabilidade é exclusivamente horizontal.'
+      'When you need transactions and complex joins.',
+      'When data is semi-structured and schemaless.',
+      'When you only need eventual reads with no consistency.',
+      'When the application does not need indexes.',
+      'When scalability is exclusively horizontal.'
     ],
     0,
     7
@@ -195,13 +195,13 @@ values
   (
     'q8',
     'fullstack-core',
-    'Para que servem índices em bancos de dados?',
+    'What are database indexes used for?',
     array[
-      'Para remover a necessidade de backups.',
-      'Para acelerar consultas evitando full table scans.',
-      'Para limitar o número de tabelas.',
-      'Para forçar consistência eventual.',
-      'Para comprimir automaticamente a base.'
+      'To remove the need for backups.',
+      'To speed up queries by avoiding full table scans.',
+      'To limit the number of tables.',
+      'To force eventual consistency.',
+      'To automatically compress the database.'
     ],
     1,
     8
@@ -209,13 +209,13 @@ values
   (
     'q9',
     'fullstack-core',
-    'Como investigar uma query lenta no Postgres?',
+    'How do you investigate a slow query in Postgres?',
     array[
-      'Desativando logs.',
-      'Usando EXPLAIN ANALYZE para avaliar custo e índices.',
-      'Removendo todos os índices.',
-      'Executando sempre com LIMIT 1.',
-      'Trocando o banco sem análise.'
+      'By disabling logs.',
+      'By using EXPLAIN ANALYZE to evaluate cost and indexes.',
+      'By removing all indexes.',
+      'By always running with LIMIT 1.',
+      'By switching databases without analysis.'
     ],
     1,
     9
@@ -223,13 +223,13 @@ values
   (
     'q10',
     'fullstack-core',
-    'O que significa consistência eventual?',
+    'What does eventual consistency mean?',
     array[
-      'Dados sempre consistentes a cada escrita.',
-      'Dados ficam consistentes ao longo do tempo.',
-      'Dados inconsistentes permanentemente.',
-      'Somente bancos SQL oferecem isso.',
-      'Somente bancos NoSQL oferecem isso.'
+      'Data is always consistent on every write.',
+      'Data becomes consistent over time.',
+      'Data is permanently inconsistent.',
+      'Only SQL databases provide this.',
+      'Only NoSQL databases provide this.'
     ],
     1,
     10
@@ -237,13 +237,13 @@ values
   (
     'q11',
     'fullstack-core',
-    'Quais são gargalos comuns em sistemas?',
+    'What are common system bottlenecks?',
     array[
-      'Somente CPU.',
-      'Somente rede interna.',
-      'Banco de dados, I/O externo, renderizações excessivas e cache.',
-      'Somente o frontend.',
-      'Somente threads do Node.js.'
+      'Only CPU.',
+      'Only internal network.',
+      'Database, external I/O, excessive rendering, and lack of cache.',
+      'Only the frontend.',
+      'Only Node.js threads.'
     ],
     2,
     11
@@ -251,13 +251,13 @@ values
   (
     'q12',
     'fullstack-core',
-    'Qual uma abordagem correta para escalabilidade backend?',
+    'What is a correct approach to backend scalability?',
     array[
-      'Acoplar serviços ao estado local.',
-      'Usar serviços stateless e escalar horizontalmente.',
-      'Remover o load balancer.',
-      'Evitar cache sempre.',
-      'Centralizar tudo em uma única instância.'
+      'Couple services to local state.',
+      'Use stateless services and scale horizontally.',
+      'Remove the load balancer.',
+      'Always avoid cache.',
+      'Centralize everything in a single instance.'
     ],
     1,
     12
@@ -265,13 +265,13 @@ values
   (
     'q13',
     'fullstack-core',
-    'Qual o objetivo principal de cache?',
+    'What is the main purpose of cache?',
     array[
-      'Aumentar latência para estabilidade.',
-      'Reduzir latência e carga no banco.',
-      'Substituir a necessidade de testes.',
-      'Eliminar o uso de memória.',
-      'Forçar consistência forte.'
+      'Increase latency for stability.',
+      'Reduce latency and database load.',
+      'Replace the need for tests.',
+      'Eliminate memory usage.',
+      'Force strong consistency.'
     ],
     1,
     13
@@ -279,13 +279,13 @@ values
   (
     'q14',
     'fullstack-core',
-    'O que é rate limiting?',
+    'What is rate limiting?',
     array[
-      'Uma técnica para aumentar o número de requisições.',
-      'Uma forma de limitar requisições por cliente.',
-      'Um algoritmo de compressão de payload.',
-      'Uma estratégia de cache interno.',
-      'Um modo de escalar verticalmente.'
+      'A technique to increase request volume.',
+      'A way to limit requests per client.',
+      'A payload compression algorithm.',
+      'An internal cache strategy.',
+      'A vertical scaling mode.'
     ],
     1,
     14
@@ -293,13 +293,13 @@ values
   (
     'q15',
     'fullstack-core',
-    'Qual a diferença entre escala vertical e horizontal?',
+    'What is the difference between vertical and horizontal scaling?',
     array[
-      'Vertical adiciona instâncias, horizontal aumenta recursos.',
-      'Vertical aumenta recursos, horizontal adiciona instâncias.',
-      'Ambas significam a mesma coisa.',
-      'Horizontal só funciona em bancos NoSQL.',
-      'Vertical só funciona com containers.'
+      'Vertical adds instances; horizontal increases resources.',
+      'Vertical increases resources; horizontal adds instances.',
+      'Both mean the same thing.',
+      'Horizontal only works in NoSQL.',
+      'Vertical only works with containers.'
     ],
     1,
     15
@@ -307,13 +307,13 @@ values
   (
     'q16',
     'fullstack-core',
-    'O que monitorar em produção?',
+    'What should you monitor in production?',
     array[
-      'Somente erros.',
-      'Somente CPU.',
-      'Latência, erros, CPU, memória e throughput.',
-      'Somente logs.',
-      'Somente métricas de negócio.'
+      'Only errors.',
+      'Only CPU.',
+      'Latency, errors, CPU, memory, and throughput.',
+      'Only logs.',
+      'Only business metrics.'
     ],
     2,
     16
@@ -321,13 +321,13 @@ values
   (
     'q17',
     'fullstack-core',
-    'Diferença entre logs e métricas?',
+    'Difference between logs and metrics?',
     array[
-      'Logs são valores agregados; métricas são eventos.',
-      'Logs são eventos; métricas são valores agregados.',
-      'Ambos são exatamente iguais.',
-      'Logs substituem métricas.',
-      'Métricas são mais detalhadas que logs sempre.'
+      'Logs are aggregated values; metrics are events.',
+      'Logs are events; metrics are aggregated values.',
+      'Both are exactly the same.',
+      'Logs replace metrics.',
+      'Metrics are always more detailed than logs.'
     ],
     1,
     17
@@ -335,13 +335,13 @@ values
   (
     'q18',
     'fullstack-core',
-    'O que é um incidente?',
+    'What is an incident?',
     array[
-      'Qualquer erro de lint.',
-      'Evento que impacta usuários ou viola SLO.',
-      'Mudança de código sem revisão.',
-      'Qualquer log de warning.',
-      'Uma falha local sem impacto.'
+      'Any lint error.',
+      'An event that impacts users or violates an SLO.',
+      'A code change without review.',
+      'Any warning log.',
+      'A local failure without impact.'
     ],
     1,
     18
@@ -349,13 +349,13 @@ values
   (
     'q19',
     'fullstack-core',
-    'O que é Root Cause Analysis?',
+    'What is Root Cause Analysis?',
     array[
-      'Uma lista de culpados do incidente.',
-      'Identificação da causa técnica e organizacional com ações.',
-      'Uma métrica de performance.',
-      'Um tipo de teste unitário.',
-      'Uma técnica de deploy.'
+      'A list of people to blame.',
+      'Identification of technical and organizational cause with actions.',
+      'A performance metric.',
+      'A type of unit test.',
+      'A deployment technique.'
     ],
     1,
     19
@@ -363,13 +363,13 @@ values
   (
     'q20',
     'fullstack-core',
-    'Erro humano é considerado causa raiz?',
+    'Is human error considered root cause?',
     array[
-      'Sim, sempre.',
-      'Sim, quando o time é pequeno.',
-      'Não; sistemas devem prevenir falhas humanas.',
-      'Somente em produção.',
-      'Somente em ambientes críticos.'
+      'Yes, always.',
+      'Yes, when the team is small.',
+      'No; systems should prevent human failures.',
+      'Only in production.',
+      'Only in critical environments.'
     ],
     2,
     20
@@ -377,13 +377,13 @@ values
   (
     'q21',
     'fullstack-core',
-    'Qual a diferença entre teste unitário e integração?',
+    'What is the difference between unit and integration tests?',
     array[
-      'Unitário testa comunicação; integração testa isolado.',
-      'Unitário testa partes isoladas; integração testa comunicação.',
-      'São sinônimos.',
-      'Integração só testa frontend.',
-      'Unitário só testa banco de dados.'
+      'Unit tests communication; integration tests isolated parts.',
+      'Unit tests isolated parts; integration tests communication.',
+      'They are synonyms.',
+      'Integration only tests frontend.',
+      'Unit tests only databases.'
     ],
     1,
     21
@@ -391,13 +391,13 @@ values
   (
     'q22',
     'fullstack-core',
-    'Onde focar a prioridade em testes?',
+    'Where should testing priority be focused?',
     array[
-      'Somente em código trivial.',
-      'Regras de negócio e edge cases.',
-      'Somente em bibliotecas externas.',
-      'Somente em testes end-to-end.',
-      'Somente em testes de UI.'
+      'Only trivial code.',
+      'Business rules and edge cases.',
+      'Only external libraries.',
+      'Only end-to-end tests.',
+      'Only UI tests.'
     ],
     1,
     22
@@ -405,13 +405,13 @@ values
   (
     'q23',
     'fullstack-core',
-    'Por que mocks podem ser perigosos?',
+    'Why can mocks be dangerous?',
     array[
-      'Porque tornam os testes mais rápidos.',
-      'Porque escondem problemas reais de integração.',
-      'Porque eliminam a necessidade de CI.',
-      'Porque aumentam a cobertura automaticamente.',
-      'Porque substituem APIs externas.'
+      'Because they make tests faster.',
+      'Because they hide real integration problems.',
+      'Because they remove the need for CI.',
+      'Because they increase coverage automatically.',
+      'Because they replace external APIs.'
     ],
     1,
     23
@@ -419,13 +419,13 @@ values
   (
     'q24',
     'fullstack-core',
-    'O que NÃO deve ser testado?',
+    'What should NOT be tested?',
     array[
-      'Regras de negócio críticas.',
+      'Critical business rules.',
       'Edge cases.',
-      'Código trivial e bibliotecas externas.',
-      'Integrações críticas.',
-      'Fluxos principais do produto.'
+      'Trivial code and external libraries.',
+      'Critical integrations.',
+      'Core product flows.'
     ],
     2,
     24
@@ -433,13 +433,13 @@ values
   (
     'q25',
     'fullstack-core',
-    'O que diz o princípio SRP?',
+    'What does the SRP principle say?',
     array[
-      'Uma classe pode ter vários motivos para mudar.',
-      'Uma classe deve ter apenas um motivo para mudar.',
-      'Cada método deve ter múltiplas responsabilidades.',
-      'Classes devem ser estáticas.',
-      'SRP é um padrão de deploy.'
+      'A class can have many reasons to change.',
+      'A class should have only one reason to change.',
+      'Each method should have multiple responsibilities.',
+      'Classes should be static.',
+      'SRP is a deployment pattern.'
     ],
     1,
     25
@@ -447,13 +447,13 @@ values
   (
     'q26',
     'fullstack-core',
-    'Qual o benefício principal do SOLID?',
+    'What is the main benefit of SOLID?',
     array[
-      'Menor acoplamento e maior testabilidade.',
-      'Maior acoplamento e menos testes.',
-      'Remover a necessidade de documentação.',
-      'Aumentar apenas a performance.',
-      'Evitar qualquer padrão de projeto.'
+      'Lower coupling and higher testability.',
+      'Higher coupling and fewer tests.',
+      'Remove the need for documentation.',
+      'Increase performance only.',
+      'Avoid any design patterns.'
     ],
     0,
     26
@@ -461,13 +461,13 @@ values
   (
     'q27',
     'fullstack-core',
-    'Como evitar longos if/else?',
+    'How to avoid long if/else chains?',
     array[
-      'Duplicando condições.',
-      'Usando composição e Strategy Pattern.',
-      'Removendo testes.',
-      'Ignorando regras de negócio.',
-      'Criando funções gigantes.'
+      'By duplicating conditions.',
+      'By using composition and the Strategy Pattern.',
+      'By removing tests.',
+      'By ignoring business rules.',
+      'By creating huge functions.'
     ],
     1,
     27
@@ -475,13 +475,13 @@ values
   (
     'q28',
     'fullstack-core',
-    'Qual a diferença entre merge e rebase?',
+    'What is the difference between merge and rebase?',
     array[
-      'Merge reescreve o histórico; rebase preserva.',
-      'Merge preserva histórico; rebase o reescreve.',
-      'Ambos sempre reescrevem histórico.',
-      'Rebase é obrigatório em todas as empresas.',
-      'Merge apaga commits antigos.'
+      'Merge rewrites history; rebase preserves it.',
+      'Merge preserves history; rebase rewrites it.',
+      'Both always rewrite history.',
+      'Rebase is mandatory everywhere.',
+      'Merge deletes old commits.'
     ],
     1,
     28
@@ -489,13 +489,13 @@ values
   (
     'q29',
     'fullstack-core',
-    'Como lidar com conflitos de merge?',
+    'How to handle merge conflicts?',
     array[
-      'Ignorar e fazer force push.',
-      'Resolver entendendo o contexto e alinhando com o time.',
-      'Apagar arquivos conflitantes.',
-      'Reverter todo o branch automaticamente.',
-      'Evitar merges para sempre.'
+      'Ignore and force push.',
+      'Resolve by understanding context and aligning with the team.',
+      'Delete conflicting files.',
+      'Revert the entire branch automatically.',
+      'Avoid merges forever.'
     ],
     1,
     29
@@ -503,13 +503,13 @@ values
   (
     'q30',
     'fullstack-core',
-    'Qual é uma prática de rollback?',
+    'What is a rollback practice?',
     array[
-      'Deploy irreversível.',
-      'Versionamento, deploy reversível e feature flags.',
-      'Remover logs de produção.',
-      'Desativar monitoramento.',
-      'Ignorar falhas e seguir em frente.'
+      'Irreversible deploy.',
+      'Versioning, reversible deploy, and feature flags.',
+      'Remove production logs.',
+      'Disable monitoring.',
+      'Ignore failures and move on.'
     ],
     1,
     30

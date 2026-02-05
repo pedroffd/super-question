@@ -80,13 +80,13 @@ function App() {
         setError(null)
         const response = await fetch(`${API_URL}/jobs`)
         if (!response.ok) {
-          throw new Error('Falha ao carregar vagas')
+          throw new Error('Failed to load roles')
         }
         const data = (await response.json()) as JobCard[]
         setJobs(data)
       } catch (err) {
         const message =
-          err instanceof Error ? err.message : 'Erro ao carregar vagas'
+          err instanceof Error ? err.message : 'Failed to load roles'
         setError(message)
       } finally {
         setIsLoading(false)
@@ -161,7 +161,7 @@ function App() {
       setError(null)
       const response = await fetch(`${API_URL}/jobs/${selectedJob.id}/quiz`)
       if (!response.ok) {
-        throw new Error('Falha ao carregar quiz')
+        throw new Error('Failed to load quiz')
       }
       const data = (await response.json()) as Quiz
       setQuiz(data)
@@ -172,8 +172,7 @@ function App() {
       autoAdvanceLock.current = -1
       setPhase('quiz')
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : 'Erro ao carregar quiz'
+      const message = err instanceof Error ? err.message : 'Failed to load quiz'
       setError(message)
       setPhase('intro')
     } finally {
@@ -200,7 +199,7 @@ function App() {
   if (isLoading && phase === 'select') {
     return (
       <div className="flex min-h-screen items-center justify-center text-slate-200">
-        Carregando vagas...
+        Loading roles...
       </div>
     )
   }
@@ -210,19 +209,19 @@ function App() {
       <header className="flex flex-wrap items-center justify-between gap-4">
         <div className="space-y-2">
           <p className="text-sm uppercase tracking-[0.3em] text-slate-500">
-            Preparação de entrevista
+            Interview prep
           </p>
           <h1 className="text-3xl font-semibold text-white">
-            Simulado Fullstack Engineer
+            Fullstack Engineer Mock Test
           </h1>
           <p className="max-w-2xl text-sm text-slate-400">
-            App de estudos baseado no PDF com 30 questões, timers e feedback
-            final.
+            Study app based on the PDF with 30 questions, timers, and final
+            feedback.
           </p>
         </div>
         <div className="flex items-center gap-3 rounded-full border border-slate-800 bg-slate-900/70 px-4 py-2 text-sm text-slate-300">
           <Flame className="h-4 w-4 text-orange-400" />
-          {quiz ? `${currentIndex + 1}/${totalQuestions}` : '30 questões'}
+          {quiz ? `${currentIndex + 1}/${totalQuestions}` : '30 questions'}
         </div>
       </header>
 
@@ -249,7 +248,7 @@ function App() {
                     {job.location}
                   </span>
                   <span className="rounded-full bg-slate-800 px-3 py-1">
-                    {job.status === 'active' ? 'Disponível' : 'Em breve'}
+                    {job.status === 'active' ? 'Available' : 'Coming soon'}
                   </span>
                 </div>
               </CardContent>
@@ -260,7 +259,7 @@ function App() {
                   disabled={job.status !== 'active'}
                   onClick={() => handleSelectJob(job)}
                 >
-                  {job.status === 'active' ? 'Selecionar vaga' : 'Em breve'}
+                  {job.status === 'active' ? 'Select role' : 'Coming soon'}
                 </Button>
               </CardFooter>
             </Card>
@@ -280,41 +279,41 @@ function App() {
             <CardContent className="space-y-4">
               <p className="text-sm text-slate-300">{selectedJob.summary}</p>
               <div className="rounded-lg border border-slate-800 bg-slate-950/70 p-4 text-sm text-slate-300">
-                <p className="mb-3 font-medium text-white">Como funciona</p>
+                <p className="mb-3 font-medium text-white">How it works</p>
                 <ul className="space-y-2">
-                  <li>Uma questão por vez com 5 opções.</li>
-                  <li>Timer geral e por questão visíveis.</li>
-                  <li>Auto-avanço quando o tempo expira.</li>
-                  <li>Resultado final com percentual de acerto.</li>
+                  <li>One question at a time with 5 options.</li>
+                  <li>Overall and per-question timers are visible.</li>
+                  <li>Auto-advance when time expires.</li>
+                  <li>Final result with score percentage.</li>
                 </ul>
               </div>
               <div className="flex flex-wrap gap-3">
                 <Button onClick={handleStartQuiz} disabled={isQuizLoading}>
-                  {isQuizLoading ? 'Carregando...' : 'Iniciar quiz'}
+                  {isQuizLoading ? 'Loading...' : 'Start quiz'}
                 </Button>
                 <Button variant="ghost" onClick={handleRestart}>
-                  Trocar vaga
+                  Change role
                 </Button>
               </div>
             </CardContent>
           </Card>
           <Card className="h-fit">
             <CardHeader>
-              <CardTitle>Checklist rápido</CardTitle>
-              <CardDescription>Antes de começar</CardDescription>
+              <CardTitle>Quick checklist</CardTitle>
+              <CardDescription>Before you start</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-slate-300">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                Garanta 25-30 min sem interrupções.
+                Block 25-30 minutes without interruptions.
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                Revise conceitos de backend e frontend.
+                Review backend and frontend concepts.
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                Use o resultado para focar nos gaps.
+                Use the result to focus on gaps.
               </div>
             </CardContent>
           </Card>
@@ -331,10 +330,10 @@ function App() {
             <CardContent className="space-y-6">
               <div className="flex flex-wrap items-center gap-3 text-sm text-slate-300">
                 <span className="rounded-full bg-slate-800 px-3 py-1">
-                  Questão {currentIndex + 1} de {totalQuestions}
+                  Question {currentIndex + 1} of {totalQuestions}
                 </span>
                 <span className="rounded-full bg-slate-800 px-3 py-1">
-                  {formatTime(questionLeft)} por questão
+                  {formatTime(questionLeft)} per question
                 </span>
               </div>
               <div className="space-y-3">
@@ -371,23 +370,23 @@ function App() {
                 }}
                 disabled={currentIndex === 0}
               >
-                Voltar
+                Back
               </Button>
               <Button onClick={() => advanceQuestion(false)}>
-                {currentIndex === totalQuestions - 1 ? 'Finalizar' : 'Próxima'}
+                {currentIndex === totalQuestions - 1 ? 'Finish' : 'Next'}
               </Button>
             </CardFooter>
           </Card>
           <Card className="h-fit">
             <CardHeader>
               <CardTitle>Timers</CardTitle>
-              <CardDescription>Controle de tempo</CardDescription>
+              <CardDescription>Time control</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="rounded-lg border border-slate-800 bg-slate-950/70 p-4">
                 <div className="flex items-center gap-2 text-sm text-slate-400">
                   <Clock className="h-4 w-4" />
-                  Tempo geral
+                  Overall time
                 </div>
                 <p className="mt-2 text-2xl font-semibold text-white">
                   {formatTime(totalLeft)}
@@ -396,14 +395,14 @@ function App() {
               <div className="rounded-lg border border-slate-800 bg-slate-950/70 p-4">
                 <div className="flex items-center gap-2 text-sm text-slate-400">
                   <GraduationCap className="h-4 w-4" />
-                  Tempo da questão
+                  Question time
                 </div>
                 <p className="mt-2 text-2xl font-semibold text-white">
                   {formatTime(questionLeft)}
                 </p>
               </div>
               <div className="text-xs text-slate-500">
-                Quando o tempo expira, a questão avança automaticamente.
+                When time expires, the question advances automatically.
               </div>
             </CardContent>
           </Card>
@@ -414,17 +413,17 @@ function App() {
         <section className="grid gap-6 lg:grid-cols-[2fr,1fr]">
           <Card>
             <CardHeader>
-              <CardTitle>Resultado final</CardTitle>
-              <CardDescription>Resumo do desempenho</CardDescription>
+              <CardTitle>Final result</CardTitle>
+              <CardDescription>Performance summary</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="rounded-lg border border-emerald-400/40 bg-emerald-500/10 p-4">
-                <p className="text-sm text-emerald-100">Acertos</p>
+                <p className="text-sm text-emerald-100">Correct answers</p>
                 <p className="text-3xl font-semibold text-white">
                   {score} / {totalQuestions}
                 </p>
                 <p className="text-sm text-emerald-200">
-                  {Math.round((score / totalQuestions) * 100)}% de acerto
+                  {Math.round((score / totalQuestions) * 100)}% correct
                 </p>
               </div>
               <div className="space-y-3 text-sm text-slate-300">
@@ -436,7 +435,7 @@ function App() {
                       className="rounded-lg border border-slate-800 bg-slate-950/60 p-3"
                     >
                       <p className="text-sm text-slate-400">
-                        Questão {index + 1}
+                        Question {index + 1}
                       </p>
                       <p className="text-sm text-white">{question.prompt}</p>
                       <p
@@ -444,7 +443,7 @@ function App() {
                           isCorrect ? 'text-emerald-300' : 'text-rose-300'
                         }`}
                       >
-                        {isCorrect ? 'Correto' : 'Incorreto'}
+                        {isCorrect ? 'Correct' : 'Incorrect'}
                       </p>
                     </div>
                   )
@@ -452,22 +451,19 @@ function App() {
               </div>
             </CardContent>
             <CardFooter className="justify-end">
-              <Button onClick={handleRestart}>Escolher outra vaga</Button>
+              <Button onClick={handleRestart}>Choose another role</Button>
             </CardFooter>
           </Card>
           <Card className="h-fit">
             <CardHeader>
-              <CardTitle>Próximos passos</CardTitle>
-              <CardDescription>Use o resultado</CardDescription>
+              <CardTitle>Next steps</CardTitle>
+              <CardDescription>Use the result</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-slate-300">
+              <p>Review the topics you missed and retake the mock later.</p>
               <p>
-                Revise os tópicos com erros recorrentes e refaça o simulado em
-                outro momento.
-              </p>
-              <p>
-                Considere criar cartões de revisão para conceitos como rate
-                limiting, escalabilidade e SOLID.
+                Consider creating flashcards for topics like rate limiting,
+                scalability, and SOLID.
               </p>
             </CardContent>
           </Card>

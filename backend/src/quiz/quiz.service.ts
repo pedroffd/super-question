@@ -11,6 +11,17 @@ import { type JobCard, type Quiz, jobs, quizzes } from './quiz.data'
 export class QuizService {
   constructor(private readonly supabaseService: SupabaseService) {}
 
+  private shuffle<T>(items: T[]) {
+    const result = [...items]
+    for (let index = result.length - 1; index > 0; index -= 1) {
+      const swapIndex = Math.floor(Math.random() * (index + 1))
+      const temp = result[index]
+      result[index] = result[swapIndex]
+      result[swapIndex] = temp
+    }
+    return result
+  }
+
   async getJobs(): Promise<JobCard[]> {
     const client = this.supabaseService.getClient()
     if (!client) {
@@ -92,12 +103,30 @@ export class QuizService {
 
     const questions = (quizRecord.questions ?? [])
       .sort((a, b) => (a.position ?? 0) - (b.position ?? 0))
-      .map((question) => ({
-        id: question.id,
-        prompt: question.prompt,
-        options: question.options ?? [],
-        correctIndex: question.correct_index ?? 0,
-      }))
+      .map((question) => {
+        const rawOptions = Array.isArray(question.options)
+          ? question.options
+          : []
+        const options = rawOptions.map((option) => String(option))
+        const shuffledOptions = this.shuffle(
+          options.map((option, index) => ({
+            option,
+            index,
+          })),
+        )
+        const correctIndex = shuffledOptions.findIndex(
+          (entry) => entry.index === (question.correct_index ?? 0),
+        )
+
+        return {
+          id: question.id,
+          prompt: question.prompt,
+          options: shuffledOptions.map((entry) => entry.option),
+          correctIndex: correctIndex === -1 ? 0 : correctIndex,
+        }
+      })
+
+    const randomizedQuestions = this.shuffle(questions)
 
     return {
       id: quizRecord.id,
@@ -106,7 +135,7 @@ export class QuizService {
       intro: quizRecord.intro ?? [],
       timeLimitSeconds: quizRecord.time_limit_seconds,
       perQuestionSeconds: quizRecord.per_question_seconds,
-      questions,
+      questions: randomizedQuestions,
     }
   }
 }
