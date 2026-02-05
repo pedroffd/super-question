@@ -7,7 +7,14 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { CheckCircle2, Clock, Flame, GraduationCap } from 'lucide-react'
+import {
+  CheckCircle2,
+  Clock,
+  Flame,
+  GraduationCap,
+  Moon,
+  Sun,
+} from 'lucide-react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 type JobCard = {
@@ -47,6 +54,7 @@ const formatTime = (totalSeconds: number) => {
 }
 
 function App() {
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
   const [jobs, setJobs] = useState<JobCard[]>([])
   const [selectedJob, setSelectedJob] = useState<JobCard | null>(null)
   const [quiz, setQuiz] = useState<Quiz | null>(null)
@@ -72,6 +80,24 @@ function App() {
       return answers[index] === question.correctIndex ? acc + 1 : acc
     }, 0)
   }, [answers, quiz])
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme')
+    if (storedTheme === 'light' || storedTheme === 'dark') {
+      setTheme(storedTheme)
+      return
+    }
+
+    const prefersDark = window.matchMedia?.(
+      '(prefers-color-scheme: dark)',
+    ).matches
+    setTheme(prefersDark ? 'dark' : 'light')
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    localStorage.setItem('theme', theme)
+  }, [theme])
 
   useEffect(() => {
     const loadJobs = async () => {
@@ -198,30 +224,52 @@ function App() {
 
   if (isLoading && phase === 'select') {
     return (
-      <div className="flex min-h-screen items-center justify-center text-slate-200">
+      <div className="flex min-h-screen items-center justify-center text-muted">
         Loading roles...
       </div>
     )
   }
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-6xl flex-col gap-10 px-6 py-10">
+    <div className="mx-auto flex min-h-screen max-w-6xl flex-col gap-10 px-6 py-10 text-app">
       <header className="flex flex-wrap items-center justify-between gap-4">
         <div className="space-y-2">
-          <p className="text-sm uppercase tracking-[0.3em] text-slate-500">
+          <p className="text-sm uppercase tracking-[0.3em] text-subtle">
             Interview prep
           </p>
-          <h1 className="text-3xl font-semibold text-white">
+          <h1 className="text-3xl font-semibold text-app">
             Fullstack Engineer Mock Test
           </h1>
-          <p className="max-w-2xl text-sm text-slate-400">
+          <p className="max-w-2xl text-sm text-subtle">
             Study app based on the PDF with 30 questions, timers, and final
             feedback.
           </p>
         </div>
-        <div className="flex items-center gap-3 rounded-full border border-slate-800 bg-slate-900/70 px-4 py-2 text-sm text-slate-300">
-          <Flame className="h-4 w-4 text-orange-400" />
-          {quiz ? `${currentIndex + 1}/${totalQuestions}` : '30 questions'}
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 rounded-full border border-panel bg-panel px-4 py-2 text-sm text-muted">
+            <Flame className="h-4 w-4 text-orange-400" />
+            {quiz ? `${currentIndex + 1}/${totalQuestions}` : '30 questions'}
+          </div>
+          <Button
+            variant="ghost"
+            className="border border-card"
+            onClick={() =>
+              setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
+            }
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? (
+              <>
+                <Sun className="h-4 w-4" />
+                Light
+              </>
+            ) : (
+              <>
+                <Moon className="h-4 w-4" />
+                Dark
+              </>
+            )}
+          </Button>
         </div>
       </header>
 
@@ -242,12 +290,12 @@ function App() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-sm text-slate-300">{job.summary}</p>
-                <div className="flex flex-wrap gap-2 text-xs text-slate-400">
-                  <span className="rounded-full bg-slate-800 px-3 py-1">
+                <p className="text-sm text-muted">{job.summary}</p>
+                <div className="flex flex-wrap gap-2 text-xs text-subtle">
+                  <span className="rounded-full bg-panel px-3 py-1">
                     {job.location}
                   </span>
-                  <span className="rounded-full bg-slate-800 px-3 py-1">
+                  <span className="rounded-full bg-panel px-3 py-1">
                     {job.status === 'active' ? 'Available' : 'Coming soon'}
                   </span>
                 </div>
@@ -277,9 +325,9 @@ function App() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <p className="text-sm text-slate-300">{selectedJob.summary}</p>
-              <div className="rounded-lg border border-slate-800 bg-slate-950/70 p-4 text-sm text-slate-300">
-                <p className="mb-3 font-medium text-white">How it works</p>
+              <p className="text-sm text-muted">{selectedJob.summary}</p>
+              <div className="rounded-lg border border-panel bg-panel p-4 text-sm text-muted">
+                <p className="mb-3 font-medium text-app">How it works</p>
                 <ul className="space-y-2">
                   <li>One question at a time with 5 options.</li>
                   <li>Overall and per-question timers are visible.</li>
@@ -302,7 +350,7 @@ function App() {
               <CardTitle>Quick checklist</CardTitle>
               <CardDescription>Before you start</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-3 text-sm text-slate-300">
+            <CardContent className="space-y-3 text-sm text-muted">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400" />
                 Block 25-30 minutes without interruptions.
@@ -328,16 +376,16 @@ function App() {
               <CardDescription>{quiz.description}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="flex flex-wrap items-center gap-3 text-sm text-slate-300">
-                <span className="rounded-full bg-slate-800 px-3 py-1">
+              <div className="flex flex-wrap items-center gap-3 text-sm text-muted">
+                <span className="rounded-full bg-panel px-3 py-1">
                   Question {currentIndex + 1} of {totalQuestions}
                 </span>
-                <span className="rounded-full bg-slate-800 px-3 py-1">
+                <span className="rounded-full bg-panel px-3 py-1">
                   {formatTime(questionLeft)} per question
                 </span>
               </div>
               <div className="space-y-3">
-                <h2 className="text-xl font-semibold text-white">
+                <h2 className="text-xl font-semibold text-app">
                   {currentQuestion.prompt}
                 </h2>
                 <div className="grid gap-3">
@@ -349,10 +397,10 @@ function App() {
                       className={`rounded-lg border px-4 py-3 text-left text-sm transition ${
                         answers[currentIndex] === index
                           ? 'border-emerald-400 bg-emerald-500/10 text-emerald-100'
-                          : 'border-slate-800 bg-slate-900/70 text-slate-200 hover:border-slate-600'
+                          : 'border-card bg-card text-app hover:border-panel'
                       }`}
                     >
-                      <span className="mr-3 font-semibold text-slate-400">
+                      <span className="mr-3 font-semibold text-subtle">
                         {String.fromCharCode(65 + index)}.
                       </span>
                       {option}
@@ -383,25 +431,25 @@ function App() {
               <CardDescription>Time control</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="rounded-lg border border-slate-800 bg-slate-950/70 p-4">
-                <div className="flex items-center gap-2 text-sm text-slate-400">
+              <div className="rounded-lg border border-panel bg-panel p-4">
+                <div className="flex items-center gap-2 text-sm text-subtle">
                   <Clock className="h-4 w-4" />
                   Overall time
                 </div>
-                <p className="mt-2 text-2xl font-semibold text-white">
+                <p className="mt-2 text-2xl font-semibold text-app">
                   {formatTime(totalLeft)}
                 </p>
               </div>
-              <div className="rounded-lg border border-slate-800 bg-slate-950/70 p-4">
-                <div className="flex items-center gap-2 text-sm text-slate-400">
+              <div className="rounded-lg border border-panel bg-panel p-4">
+                <div className="flex items-center gap-2 text-sm text-subtle">
                   <GraduationCap className="h-4 w-4" />
                   Question time
                 </div>
-                <p className="mt-2 text-2xl font-semibold text-white">
+                <p className="mt-2 text-2xl font-semibold text-app">
                   {formatTime(questionLeft)}
                 </p>
               </div>
-              <div className="text-xs text-slate-500">
+              <div className="text-xs text-subtle">
                 When time expires, the question advances automatically.
               </div>
             </CardContent>
@@ -419,25 +467,25 @@ function App() {
             <CardContent className="space-y-6">
               <div className="rounded-lg border border-emerald-400/40 bg-emerald-500/10 p-4">
                 <p className="text-sm text-emerald-100">Correct answers</p>
-                <p className="text-3xl font-semibold text-white">
+                <p className="text-3xl font-semibold text-app">
                   {score} / {totalQuestions}
                 </p>
                 <p className="text-sm text-emerald-200">
                   {Math.round((score / totalQuestions) * 100)}% correct
                 </p>
               </div>
-              <div className="space-y-3 text-sm text-slate-300">
+              <div className="space-y-3 text-sm text-muted">
                 {quiz.questions.map((question, index) => {
                   const isCorrect = answers[index] === question.correctIndex
                   return (
                     <div
                       key={question.id}
-                      className="rounded-lg border border-slate-800 bg-slate-950/60 p-3"
+                      className="rounded-lg border border-card bg-card p-3"
                     >
-                      <p className="text-sm text-slate-400">
+                      <p className="text-sm text-subtle">
                         Question {index + 1}
                       </p>
-                      <p className="text-sm text-white">{question.prompt}</p>
+                      <p className="text-sm text-app">{question.prompt}</p>
                       <p
                         className={`text-xs ${
                           isCorrect ? 'text-emerald-300' : 'text-rose-300'
@@ -459,7 +507,7 @@ function App() {
               <CardTitle>Next steps</CardTitle>
               <CardDescription>Use the result</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-3 text-sm text-slate-300">
+            <CardContent className="space-y-3 text-sm text-muted">
               <p>Review the topics you missed and retake the mock later.</p>
               <p>
                 Consider creating flashcards for topics like rate limiting,

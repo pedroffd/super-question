@@ -1,9 +1,104 @@
 @import "tailwindcss";
 
+:root {
+  color-scheme: light;
+  --app-bg: #f8fafc;
+  --app-text: #0f172a;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-border: #e2e8f0;
+  --panel-bg: #f1f5f9;
+  --panel-border: #e2e8f0;
+  --text-muted: #475569;
+  --text-subtle: #64748b;
+  --accent: #0f172a;
+  --accent-contrast: #f8fafc;
+  --accent-hover: #1e293b;
+  --secondary: #e2e8f0;
+  --secondary-text: #0f172a;
+  --secondary-hover: #cbd5e1;
+  --ghost-hover: #e2e8f0;
+  --ring: #94a3b8;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --app-bg: #020617;
+  --app-text: #e2e8f0;
+  --card-bg: rgba(15, 23, 42, 0.6);
+  --card-border: #1e293b;
+  --panel-bg: rgba(2, 6, 23, 0.7);
+  --panel-border: #1e293b;
+  --text-muted: #cbd5f5;
+  --text-subtle: #94a3b8;
+  --accent: #f8fafc;
+  --accent-contrast: #0f172a;
+  --accent-hover: #e2e8f0;
+  --secondary: #1e293b;
+  --secondary-text: #e2e8f0;
+  --secondary-hover: #334155;
+  --ghost-hover: #1e293b;
+  --ring: #94a3b8;
+}
+
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100;
+    background-color: var(--app-bg);
+    color: var(--app-text);
     font-family: "Inter", system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .bg-app {
+    background-color: var(--app-bg);
+  }
+  .text-app {
+    color: var(--app-text);
+  }
+  .bg-card {
+    background-color: var(--card-bg);
+  }
+  .border-card {
+    border-color: var(--card-border);
+  }
+  .bg-panel {
+    background-color: var(--panel-bg);
+  }
+  .border-panel {
+    border-color: var(--panel-border);
+  }
+  .text-muted {
+    color: var(--text-muted);
+  }
+  .text-subtle {
+    color: var(--text-subtle);
+  }
+  .bg-accent {
+    background-color: var(--accent);
+  }
+  .text-accent-contrast {
+    color: var(--accent-contrast);
+  }
+  .hover\:bg-accent-hover:hover {
+    background-color: var(--accent-hover);
+  }
+  .bg-secondary {
+    background-color: var(--secondary);
+  }
+  .text-secondary {
+    color: var(--secondary-text);
+  }
+  .hover\:bg-secondary-hover:hover {
+    background-color: var(--secondary-hover);
+  }
+  .hover\:bg-ghost-hover:hover {
+    background-color: var(--ghost-hover);
+  }
+  .ring-app {
+    --tw-ring-color: var(--ring);
+  }
+  .ring-offset-app {
+    --tw-ring-offset-color: var(--app-bg);
   }
 }
 

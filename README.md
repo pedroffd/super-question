@@ -9,6 +9,7 @@ Fullstack quiz app to prep for a Fullstack Engineer interview. The app shows job
 - Global timer and per-question timer
 - Final score and percentage
 - Questions and options randomized on each start
+- Light and dark themes
 
 ## Tech Stack
 **Backend**
