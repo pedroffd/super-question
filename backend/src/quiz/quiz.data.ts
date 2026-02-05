@@ -62,8 +62,7 @@ export const quizzes: Quiz[] = [
   {
     id: 'fullstack-core',
     title: 'Preparação Fullstack Engineer',
-    description:
-      'Questões baseadas no material de preparação para entrevista.',
+    description: 'Questões baseadas no material de preparação para entrevista.',
     intro: [
       'São 30 questões de múltipla escolha (5 opções).',
       'O timer geral e o timer por questão rodam em paralelo.',

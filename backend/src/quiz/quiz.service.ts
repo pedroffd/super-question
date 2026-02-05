@@ -1,6 +1,10 @@
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common'
-import { SupabaseService } from '../supabase/supabase.service'
-import { jobs, quizzes, type JobCard, type Quiz } from './quiz.data'
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common'
+import type { SupabaseService } from '../supabase/supabase.service'
+import { type JobCard, type Quiz, jobs, quizzes } from './quiz.data'
 
 @Injectable()
 export class QuizService {
@@ -18,7 +22,6 @@ export class QuizService {
       .order('title', { ascending: true })
 
     if (error) {
-      console.error('Supabase jobs error:', error)
       throw new InternalServerErrorException('Failed to load jobs')
     }
 
@@ -47,9 +50,6 @@ export class QuizService {
       .single()
 
     if (error || !data) {
-      if (error) {
-        console.error('Supabase job error:', error)
-      }
       throw new NotFoundException('Job not found')
     }
 
@@ -80,9 +80,6 @@ export class QuizService {
       .single()
 
     if (error || !data) {
-      if (error) {
-        console.error('Supabase quiz error:', error)
-      }
       throw new NotFoundException('Job not found')
     }
 

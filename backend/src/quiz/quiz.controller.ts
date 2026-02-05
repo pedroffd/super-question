@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common'
-import { QuizService } from './quiz.service'
+import type { QuizService } from './quiz.service'
 
 @Controller('api')
 export class QuizController {

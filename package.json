@@ -1,0 +1,12 @@
+{
+  "name": "super-question",
+  "private": true,
+  "scripts": {
+    "prepare": "husky install",
+    "lint": "npm --prefix backend run lint && npm --prefix frontend run lint",
+    "format": "npm --prefix backend run format && npm --prefix frontend run format"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}

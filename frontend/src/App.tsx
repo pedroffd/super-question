@@ -1,5 +1,3 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { CheckCircle2, Clock, Flame, GraduationCap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -9,6 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { CheckCircle2, Clock, Flame, GraduationCap } from 'lucide-react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 type JobCard = {
   id: string
@@ -107,6 +107,7 @@ function App() {
     return () => window.clearInterval(interval)
   }, [phase, quiz])
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: reset on index change
   useEffect(() => {
     autoAdvanceLock.current = -1
   }, [currentIndex])
@@ -344,6 +345,7 @@ function App() {
                   {currentQuestion.options.map((option, index) => (
                     <button
                       key={option}
+                      type="button"
                       onClick={() => handleAnswer(index)}
                       className={`rounded-lg border px-4 py-3 text-left text-sm transition ${
                         answers[currentIndex] === index
