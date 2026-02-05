@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import type { ConfigService } from '@nestjs/config'
+// biome-ignore lint/style/useImportType: Nest DI needs runtime import
+import { ConfigService } from '@nestjs/config'
 import { type SupabaseClient, createClient } from '@supabase/supabase-js'
 
 @Injectable()

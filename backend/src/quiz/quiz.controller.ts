@@ -1,5 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common'
-import type { QuizService } from './quiz.service'
+// biome-ignore lint/style/useImportType: Nest DI needs runtime import
+import { QuizService } from './quiz.service'
 
 @Controller('api')
 export class QuizController {
