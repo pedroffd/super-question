@@ -402,7 +402,9 @@ function App() {
                       onClick={() => handleAnswer(index)}
                       className={`rounded-lg border px-4 py-3 text-left text-sm transition ${
                         answers[currentIndex] === index
-                          ? 'border-emerald-400 bg-emerald-500/10 text-emerald-100'
+                          ? theme === 'dark'
+                            ? 'border-emerald-400 bg-emerald-500/10 text-emerald-100'
+                            : 'border-emerald-400 bg-emerald-500/20 text-emerald-900'
                           : 'border-card bg-card text-app hover:border-panel'
                       }`}
                     >
