@@ -3,7 +3,8 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common'
-import type { SupabaseService } from '../supabase/supabase.service'
+// biome-ignore lint/style/useImportType: Nest DI needs runtime import
+import { SupabaseService } from '../supabase/supabase.service'
 import { type JobCard, type Quiz, jobs, quizzes } from './quiz.data'
 
 @Injectable()
