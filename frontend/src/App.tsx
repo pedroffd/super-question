@@ -53,6 +53,12 @@ const formatTime = (totalSeconds: number) => {
   return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
 }
 
+const getSummaryLines = (summary: string) =>
+  summary
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
   const [jobs, setJobs] = useState<JobCard[]>([])
@@ -86,6 +92,51 @@ function App() {
     () => answers.filter((answer) => answer !== null).length,
     [answers],
   )
+
+  const renderSummary = (summary: string) => {
+    const lines = getSummaryLines(summary)
+    const blocks: JSX.Element[] = []
+    let listItems: string[] = []
+
+    const flushList = (key: number) => {
+      if (!listItems.length) return
+      blocks.push(
+        <ul key={`list-${key}`} className="ml-4 list-disc space-y-1 text-sm">
+          {listItems.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>,
+      )
+      listItems = []
+    }
+
+    lines.forEach((line, index) => {
+      if (line.endsWith(':')) {
+        flushList(index)
+        blocks.push(
+          <p key={`heading-${line}`} className="text-sm font-semibold text-app">
+            {line}
+          </p>,
+        )
+        return
+      }
+
+      if (line.startsWith('-')) {
+        listItems.push(line.replace(/^-+\s*/, ''))
+        return
+      }
+
+      flushList(index)
+      blocks.push(
+        <p key={`text-${line}`} className="text-sm text-muted">
+          {line}
+        </p>,
+      )
+    })
+
+    flushList(lines.length)
+    return blocks
+  }
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme')
@@ -296,7 +347,9 @@ function App() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-sm text-muted">{job.summary}</p>
+                <p className="text-sm text-muted">
+                  {getSummaryLines(job.summary)[0] ?? job.summary}
+                </p>
                 <div className="flex flex-wrap gap-2 text-xs text-subtle">
                   <span className="rounded-full bg-panel px-3 py-1">
                     {job.location}
@@ -331,7 +384,9 @@ function App() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <p className="text-sm text-muted">{selectedJob.summary}</p>
+              <div className="space-y-3">
+                {renderSummary(selectedJob.summary)}
+              </div>
               <div className="rounded-lg border border-panel bg-panel p-4 text-sm text-muted">
                 <p className="mb-3 font-medium text-app">How it works</p>
                 <ul className="space-y-2">

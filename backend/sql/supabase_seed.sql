@@ -61,7 +61,25 @@ values
     'Remote',
     'active',
     'fullstack-core',
-    'Complete mock test covering core backend and frontend concepts.'
+    $$Role focus: Fullstack engineering for scalable SaaS products.
+Responsibilities:
+- Design, build, and maintain scalable fullstack apps with React, Node.js, NestJS, MongoDB, and PostgreSQL.
+- Ensure infrastructure reliability and efficiency.
+- Optimize application performance for scale and responsiveness.
+- Implement and monitor alerting and monitoring systems.
+- Collaborate to identify and remove performance bottlenecks.
+- Perform root cause analysis for production incidents and prevent recurrence.
+- Build and maintain unit tests for code quality.
+- Use Git for version control and collaboration.
+Requirements:
+- 7+ years of fullstack experience with React and Node.js/NestJS.
+- Proficiency in MongoDB and PostgreSQL optimization.
+- Strong knowledge of SOLID and CLEAN principles.
+- Familiarity with SaaS platforms and delivery.
+- Knowledge of unit testing libraries and practices.
+- Experience with Git workflows.
+- Strong monitoring and incident response experience.
+- Advanced English.$$
   ),
   (
     'backend-engineer',
