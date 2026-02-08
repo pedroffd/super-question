@@ -15,7 +15,14 @@ import {
   Moon,
   Sun,
 } from 'lucide-react'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import {
+  type ReactElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 
 type JobCard = {
   id: string
@@ -95,7 +102,7 @@ function App() {
 
   const renderSummary = (summary: string) => {
     const lines = getSummaryLines(summary)
-    const blocks: JSX.Element[] = []
+    const blocks: ReactElement[] = []
     let listItems: string[] = []
 
     const flushList = (key: number) => {
