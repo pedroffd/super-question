@@ -12,6 +12,7 @@ import {
   Clock,
   Flame,
   GraduationCap,
+  Leaf,
   Moon,
   Sun,
 } from 'lucide-react'
@@ -66,8 +67,16 @@ const getSummaryLines = (summary: string) =>
     .map((line) => line.trim())
     .filter(Boolean)
 
+type Theme = 'light' | 'dark' | 'calm'
+
+const themeLabels: Record<Theme, string> = {
+  light: 'Light',
+  dark: 'Dark',
+  calm: 'Calm',
+}
+
 function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+  const [theme, setTheme] = useState<Theme>('dark')
   const [jobs, setJobs] = useState<JobCard[]>([])
   const [selectedJob, setSelectedJob] = useState<JobCard | null>(null)
   const [quiz, setQuiz] = useState<Quiz | null>(null)
@@ -147,7 +156,11 @@ function App() {
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme')
-    if (storedTheme === 'light' || storedTheme === 'dark') {
+    if (
+      storedTheme === 'light' ||
+      storedTheme === 'dark' ||
+      storedTheme === 'calm'
+    ) {
       setTheme(storedTheme)
       return
     }
@@ -162,6 +175,14 @@ function App() {
     document.documentElement.dataset.theme = theme
     localStorage.setItem('theme', theme)
   }, [theme])
+
+  const cycleTheme = () => {
+    setTheme((prev) => {
+      if (prev === 'dark') return 'calm'
+      if (prev === 'calm') return 'light'
+      return 'dark'
+    })
+  }
 
   useEffect(() => {
     const loadJobs = async () => {
@@ -317,20 +338,23 @@ function App() {
           <Button
             variant="ghost"
             className="border border-card"
-            onClick={() =>
-              setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
-            }
+            onClick={cycleTheme}
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? (
               <>
                 <Sun className="h-4 w-4" />
-                Light
+                {themeLabels.light}
+              </>
+            ) : theme === 'calm' ? (
+              <>
+                <Leaf className="h-4 w-4" />
+                {themeLabels.calm}
               </>
             ) : (
               <>
                 <Moon className="h-4 w-4" />
-                Dark
+                {themeLabels.dark}
               </>
             )}
           </Button>
@@ -466,7 +490,9 @@ function App() {
                         answers[currentIndex] === index
                           ? theme === 'dark'
                             ? 'border-emerald-400 bg-emerald-500/10 text-emerald-100'
-                            : 'border-emerald-400 bg-emerald-500/20 text-emerald-900'
+                            : theme === 'calm'
+                              ? 'border-teal-400 bg-teal-500/15 text-teal-900'
+                              : 'border-emerald-400 bg-emerald-500/20 text-emerald-900'
                           : 'border-card bg-card text-app hover:border-panel'
                       }`}
                     >

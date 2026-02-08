@@ -40,6 +40,26 @@
   --ring: #94a3b8;
 }
 
+[data-theme="calm"] {
+  color-scheme: light;
+  --app-bg: #f6f4ef;
+  --app-text: #1f2a24;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-border: #e6dfd4;
+  --panel-bg: #efe9dd;
+  --panel-border: #e0d6c7;
+  --text-muted: #46524b;
+  --text-subtle: #6b756f;
+  --accent: #1f2a24;
+  --accent-contrast: #f6f4ef;
+  --accent-hover: #2e3a34;
+  --secondary: #e6dfd4;
+  --secondary-text: #1f2a24;
+  --secondary-hover: #d7cdbf;
+  --ghost-hover: #e6dfd4;
+  --ring: #98a39b;
+}
+
 @layer base {
   body {
     background-color: var(--app-bg);
