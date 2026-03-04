@@ -72,8 +72,10 @@ npm run format
 ```
 
 ## Deployment
-- Backend: Railway
 - Frontend: Vercel
+- Backend: Railway
+
+Live app: https://super-question-phi.vercel.app/
 
 Set `VITE_API_URL` in Vercel to your Railway URL:
 ```
