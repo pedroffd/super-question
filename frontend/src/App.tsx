@@ -41,6 +41,9 @@ type QuizQuestion = {
   prompt: string
   options: string[]
   correctIndex: number
+  type: string
+  explanation: string
+  codeSnippet: string | null
 }
 
 type Quiz = {
@@ -91,6 +94,8 @@ function App() {
   const [totalLeft, setTotalLeft] = useState(0)
   const [questionLeft, setQuestionLeft] = useState(0)
   const [showPartial, setShowPartial] = useState(false)
+  const [showExplanation, setShowExplanation] = useState(false)
+  const [showCode, setShowCode] = useState(false)
 
   const autoAdvanceLock = useRef(0)
 
@@ -248,6 +253,8 @@ function App() {
 
       setCurrentIndex((prev) => prev + 1)
       setQuestionLeft(quiz.perQuestionSeconds)
+      setShowExplanation(false)
+      setShowCode(false)
     },
     [currentIndex, finishQuiz, quiz],
   )
@@ -480,29 +487,71 @@ function App() {
                 <h2 className="text-xl font-semibold text-app">
                   {currentQuestion.prompt}
                 </h2>
-                <div className="grid gap-3">
-                  {currentQuestion.options.map((option, index) => (
-                    <button
-                      key={option}
-                      type="button"
-                      onClick={() => handleAnswer(index)}
-                      className={`rounded-lg border px-4 py-3 text-left text-sm transition ${
-                        answers[currentIndex] === index
-                          ? theme === 'dark'
-                            ? 'border-emerald-400 bg-emerald-500/10 text-emerald-100'
-                            : theme === 'calm'
-                              ? 'border-teal-400 bg-teal-500/15 text-teal-900'
-                              : 'border-emerald-400 bg-emerald-500/20 text-emerald-900'
-                          : 'border-card bg-card text-app hover:border-panel'
-                      }`}
-                    >
-                      <span className="mr-3 font-semibold text-subtle">
-                        {String.fromCharCode(65 + index)}.
-                      </span>
-                      {option}
-                    </button>
-                  ))}
-                </div>
+                {currentQuestion.type === 'theory' ? (
+                  <div className="grid gap-3">
+                    {currentQuestion.options.map((option, index) => (
+                      <button
+                        key={option}
+                        type="button"
+                        onClick={() => handleAnswer(index)}
+                        className={`rounded-lg border px-4 py-3 text-left text-sm transition ${
+                          answers[currentIndex] === index
+                            ? theme === 'dark'
+                              ? 'border-emerald-400 bg-emerald-500/10 text-emerald-100'
+                              : theme === 'calm'
+                                ? 'border-teal-400 bg-teal-500/15 text-teal-900'
+                                : 'border-emerald-400 bg-emerald-500/20 text-emerald-900'
+                            : 'border-card bg-card text-app hover:border-panel'
+                        }`}
+                      >
+                        <span className="mr-3 font-semibold text-subtle">
+                          {String.fromCharCode(65 + index)}.
+                        </span>
+                        {option}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="rounded-lg border border-card bg-card p-4 text-sm text-muted">
+                    <p className="mb-4">
+                      This is a practical coding challenge. It does not have
+                      alternative options.
+                    </p>
+                    {showCode ? (
+                      <pre className="overflow-x-auto rounded-md bg-panel p-4 text-xs mt-2 text-app">
+                        {currentQuestion.codeSnippet}
+                      </pre>
+                    ) : (
+                      <Button
+                        variant="secondary"
+                        onClick={() => setShowCode(true)}
+                        className="w-full"
+                      >
+                        View Expected Code
+                      </Button>
+                    )}
+                  </div>
+                )}
+
+                {currentQuestion.type === 'theory' &&
+                  answers[currentIndex] !== null && (
+                    <div className="mt-4 border-t border-card pt-4">
+                      {showExplanation ? (
+                        <div className="rounded-lg bg-panel p-4 text-sm text-app">
+                          <p className="font-semibold mb-2">Explanation:</p>
+                          <p>{currentQuestion.explanation}</p>
+                        </div>
+                      ) : (
+                        <Button
+                          variant="secondary"
+                          onClick={() => setShowExplanation(true)}
+                          className="w-full"
+                        >
+                          Show Explanation
+                        </Button>
+                      )}
+                    </div>
+                  )}
               </div>
             </CardContent>
             <CardFooter className="justify-between">

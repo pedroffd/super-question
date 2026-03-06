@@ -1,0 +1,155 @@
+Hello Pedro,
+
+I hope you're doing well.
+
+This is Florencia from AR IT Services.  
+I'm pleased to let you know that we are advancing your profile to the next stage for the Frontend  position with PayPal.
+
+Key position details:
+
+•⁠  ⁠Client: PayPal 
+•⁠  ⁠Overtime: No  
+•⁠  ⁠Duration: 12 months or more 
+•⁠  ⁠Time zone: Aligned as closely as possible to PST
+•⁠  ⁠Background check: Yes (standard)  
+•⁠  ⁠Laptop: Provided by the Client – Delivered by Taller
+•⁠  ⁠Selection process: Taller Technical Interview→Cultural Fit with CSM →Client Technical Interview
+•⁠  ⁠Rate: USD 5000 
+•⁠  ⁠Payment: USD via Payoneer or preferred method  
+•⁠  ⁠Modality: Contractor (non-paid vacations, Latam residents only)
+
+To continue, please reply with your formal confirmation that you wish to proceed.
+
+
+
+.⁠ ⁠Share your *updated CV*, ideally aligned/tailored to the role (the client is reviewing CVs very carefully and appreciates when key responsibilities and technologies from the job are reflected in the experience descriptions).  
+2.⁠ ⁠Complete this short *screening* (max 10 min). It explains the full process including next steps with Taller Technologies.  
+   🔗 https://app.hireflix.com/public-application/697134d493448bccad9a0d95  
+   (Please do it as soon as possible)
+
+   3. Additionally, to keep things moving quickly, kindly include the following in your reply:
+
+•⁠  ⁠Relevant work experience / main technologies / key projects (brief summary related to this role)  
+•⁠  ⁠Previously worked for this client? Yes/No (if yes, when?)  
+•⁠  ⁠Previously worked as contractor? Yes/No (do you understand contractor modality?)  
+•⁠  ⁠Nationality:  
+•⁠  ⁠Current location: Country / Province/State / City  
+•⁠  ⁠(If nationality ≠ location) Attach front & back of work/residence permit or equivalent  
+•⁠  ⁠Any other active selection processes? Yes/No (if yes, current status?)  
+•⁠  ⁠Planned vacations next 6 months? (If during selection, available for interviews?)  
+•⁠  ⁠Planned trips? (details if any)  
+•⁠  ⁠Upcoming leave (medical/personal/etc.)?  
+  Format example:  
+  Planned Time Off: mm/dd/yyyy – mm/dd/yyyy Note: [reason]  
+  Single days: mm/dd/yyyy ; mm/dd/yyyy Note: [reason]  
+•⁠  ⁠Do you usually/intend to work while traveling?  
+•⁠  ⁠Plans to relocate?  
+•⁠  ⁠Earliest start date:  
+•⁠  ⁠Availability for technical interview (include your time zone + best days/times)
+
+Note: We partner with Taller Technologies for interview coordination — you’ll receive scheduling emails directly from them.
+
+Thank you for your quick reply — we’re excited to keep moving forward!
+
+Any questions, just let me know.
+
+Best regards,  
+Florencia
+
+
+
+
+
+We are excited to have you participate in the upcoming technical interview. To ensure a smooth and successful interview process, please take note of the following important information:
+
+1. Internet Connection and Equipment:
+
+- Please ensure that you have a stable internet connection, a functioning microphone, and a working camera. Interviews cannot be conducted with the camera turned off.
+
+- It is a must to use a laptop or PC for the interview rather than a mobile device.
+
+
+2. Interview Structure:
+
+- The technical interview will include sections on fundamental concepts of each technology and situational questions focusing on the "what" and "why" of your responses.
+
+- There will also be live exercises or challenges shared on-screen during the interview, which typically lasts no longer than 30 minutes. depending on the profile and technology.
+
+
+3. Types of Challenges:
+
+- Code Challenges: Standard coding exercises to observe good coding practices. Algorithmic Exercises and Scenarios designed to test your problem-solving skills.
+
+- Data Challenges: SQL query scenarios to demonstrate your knowledge and proficiency.
+
+- System Design Challenge: Questions on system design principles and decision-making processes.
+
+- QA Challenges (for Quality Engineers): Scenarios related to quality assurance strategies.
+
+- QA Automation Challenges (for Quality Engineers): Best practices in scripting and API consumption.
+
+NOTE: Whenever a Live Challenge is requested, you will need to create a public repository where the code will be stored.
+Also, make sure the repository link remains public, as this will allow us to consider you for different positions over time.
+
+4. Tips for Success:
+
+- Ensure you have a properly configured environment based on the technology being interviewed for, making it easier to share information with the interviewer.
+
+- Consider having a public repository available at the end of the interview to share with the interviewer.
+
+- Practice before the interview, especially for code challenges, as they require reasoning and showcasing your knowledge effectively.
+
+
+Additionally, please note that the next interview will be recorded for security and reliability purposes for both parties.
+
+
+Thank you for your cooperation in this process!
+
+
+We look forward to seeing your skills in action during the interview! If you have any further questions or concerns, please do not hesitate to reach out.
+
+
+Regards,
+
+Assessment Team
+
+
+
+
+PP - Fullstack Frontend Engineer - Job1889
+Summary
+Our client, a leading payments and digital wallet company, is seeking a highly skilled and experienced Senior Fullstack Frontend Engineer to join their dynamic engineering team. This role is critical to the company’s mission of delivering seamless, secure, and innovative monetary transaction solutions worldwide. The ideal candidate will independently develop and maintain sophisticated web applications, leveraging React and Redux on the front end, with a solid understanding of JavaScript. This position offers the opportunity to tackle complex front-end challenges, build new features that impact millions of users globally, and ensure the highest quality through rigorous testing and debugging. The Senior Fullstack Frontend Engineer will collaborate closely with cross-functional teams to support smooth releases and continuous improvement of the product.
+
+
+Responsibilities
+Independently design, develop, and maintain scalable web applications using React for the front end and Node.js/Express for the back end.
+Solve complex front-end challenges, including UI/UX improvements, performance optimization, and responsive design to enhance user experience in a high-transaction environment.
+Build and implement new features related to global monetary transactions, ensuring security, reliability, and compliance with industry standards.
+Debug and resolve client-side and server-side issues efficiently, minimizing downtime and improving system stability.
+Write comprehensive unit and integration tests using Jest and React Testing Library to maintain high code quality and prevent regressions.
+Collaborate with other engineers, product managers, and QA teams to ensure quality assurance and smooth release cycles.
+Participate in code reviews, provide constructive feedback, and mentor junior engineers to foster a culture of continuous learning and improvement.
+Contribute to the full software development lifecycle, including requirements gathering, design, implementation, testing, deployment, and maintenance.
+Stay up-to-date with emerging technologies and industry trends to recommend and implement improvements that enhance product performance and scalability.
+Utilize DevOps tools and cloud services to support deployment, monitoring, and infrastructure management as needed.
+
+
+
+Requirements
+Must-Have Skills
+JavaScript: Expert-level proficiency in JavaScript, including ES6 features, asynchronous programming, and modern development patterns.
+Ability to write clean, maintainable, and efficient code is essential for both front-end and back-end development.
+React: Strong experience with React, including component-based architecture, state management, and lifecycle methods. Proficiency in Redux for state management is critical. The ability to solve complex UI challenges and optimize rendering performance is essential.
+Node.js: Proficient in Node.js for server-side development, with a deep understanding of event-driven architecture, asynchronous I/O, and RESTful API design.
+Express: Experience building scalable and secure APIs using Express.js, including middleware integration, routing, and error handling.
+Jest: Skilled in writing unit and integration tests using Jest to ensure code reliability and maintainability. Familiarity with mocking, snapshot testing, and test coverage analysis.
+React Testing Library: Proficient in using React Testing Library to write tests that simulate user interactions and verify component behavior, ensuring a robust front-end codebase.
+Debugging: Strong debugging skills across both client-side and server-side environments. Ability to diagnose and fix complex issues using browser developer tools, Node.js debuggers, and logging frameworks.
+Nice-to-Have Skills
+CSS: Solid understanding of CSS, including Flexbox, Grid, and responsive design principles, to create visually appealing and accessible user interfaces.
+GraphQL: Experience with GraphQL APIs, including schema design, queries, mutations, and integration with React using Apollo Client.
+Cypress: Familiarity with Cypress for end-to-end testing to automate user flows and ensure application stability across releases.
+Jenkins: Knowledge of Jenkins for continuous integration and continuous deployment (CI/CD) pipelines, enabling automated build, test, and deployment processes.
+Jira: Experience using Jira for agile project management, including sprint planning, issue tracking, and collaboration with cross-functional teams.
+React Hooks: Deep understanding of React Hooks for managing state and side effects in functional components, improving code readability and reusability.
+Apollo GraphQL: Experience with Apollo GraphQL client for managing data fetching and caching in React applications, enhancing performance and developer experience.

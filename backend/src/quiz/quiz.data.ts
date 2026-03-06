@@ -14,6 +14,9 @@ export type QuizQuestion = {
   prompt: string
   options: string[]
   correctIndex: number
+  type: string
+  explanation: string
+  codeSnippet: string | null
 }
 
 export type Quiz = {
@@ -131,6 +134,9 @@ export const quizzes: Quiz[] = [
           'A queue dedicated only to Promises.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q2',
@@ -144,6 +150,9 @@ export const quizzes: Quiz[] = [
           'async/await only works with callbacks.',
         ],
         correctIndex: 2,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q3',
@@ -156,6 +165,9 @@ export const quizzes: Quiz[] = [
           'It has no impact, since Node.js is multi-threaded by default.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q4',
@@ -168,6 +180,9 @@ export const quizzes: Quiz[] = [
           'Because it does not need controllers.',
         ],
         correctIndex: 2,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q5',
@@ -180,6 +195,9 @@ export const quizzes: Quiz[] = [
           'Configuring NoSQL databases.',
         ],
         correctIndex: 0,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q6',
@@ -192,6 +210,9 @@ export const quizzes: Quiz[] = [
           'When the focus is financial transactions.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q7',
@@ -204,6 +225,9 @@ export const quizzes: Quiz[] = [
           'When scalability is exclusively horizontal.',
         ],
         correctIndex: 0,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q8',
@@ -216,6 +240,9 @@ export const quizzes: Quiz[] = [
           'To automatically compress the database.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q9',
@@ -228,6 +255,9 @@ export const quizzes: Quiz[] = [
           'By switching databases without analysis.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q10',
@@ -240,6 +270,9 @@ export const quizzes: Quiz[] = [
           'Only NoSQL databases provide this.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q11',
@@ -252,6 +285,9 @@ export const quizzes: Quiz[] = [
           'Only Node.js threads.',
         ],
         correctIndex: 2,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q12',
@@ -264,6 +300,9 @@ export const quizzes: Quiz[] = [
           'Centralize everything in a single instance.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q13',
@@ -276,6 +315,9 @@ export const quizzes: Quiz[] = [
           'Force strong consistency.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q14',
@@ -288,6 +330,9 @@ export const quizzes: Quiz[] = [
           'A vertical scaling mode.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q15',
@@ -301,6 +346,9 @@ export const quizzes: Quiz[] = [
           'Vertical only works with containers.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q16',
@@ -313,6 +361,9 @@ export const quizzes: Quiz[] = [
           'Only business metrics.',
         ],
         correctIndex: 2,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q17',
@@ -325,6 +376,9 @@ export const quizzes: Quiz[] = [
           'Metrics are always more detailed than logs.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q18',
@@ -337,6 +391,9 @@ export const quizzes: Quiz[] = [
           'A local failure without impact.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q19',
@@ -349,6 +406,9 @@ export const quizzes: Quiz[] = [
           'A deployment technique.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q20',
@@ -361,6 +421,9 @@ export const quizzes: Quiz[] = [
           'Only in critical environments.',
         ],
         correctIndex: 2,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q21',
@@ -373,6 +436,9 @@ export const quizzes: Quiz[] = [
           'Unit tests only databases.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q22',
@@ -385,6 +451,9 @@ export const quizzes: Quiz[] = [
           'Only UI tests.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q23',
@@ -397,6 +466,9 @@ export const quizzes: Quiz[] = [
           'Because they replace external APIs.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q24',
@@ -409,6 +481,9 @@ export const quizzes: Quiz[] = [
           'Core product flows.',
         ],
         correctIndex: 2,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q25',
@@ -421,6 +496,9 @@ export const quizzes: Quiz[] = [
           'SRP is a deployment pattern.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q26',
@@ -433,6 +511,9 @@ export const quizzes: Quiz[] = [
           'Avoid any design patterns.',
         ],
         correctIndex: 0,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q27',
@@ -445,6 +526,9 @@ export const quizzes: Quiz[] = [
           'By creating huge functions.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q28',
@@ -457,6 +541,9 @@ export const quizzes: Quiz[] = [
           'Merge deletes old commits.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q29',
@@ -469,6 +556,9 @@ export const quizzes: Quiz[] = [
           'Avoid merges forever.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'q30',
@@ -481,6 +571,9 @@ export const quizzes: Quiz[] = [
           'Ignore failures and move on.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
     ],
   },
@@ -508,6 +601,9 @@ export const quizzes: Quiz[] = [
           'Own only database schema design.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c2',
@@ -520,6 +616,9 @@ export const quizzes: Quiz[] = [
           'There is no meaningful difference.',
         ],
         correctIndex: 0,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c3',
@@ -532,6 +631,9 @@ export const quizzes: Quiz[] = [
           'A database sharding strategy.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c4',
@@ -544,6 +646,9 @@ export const quizzes: Quiz[] = [
           'Shipping features faster without tests.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c5',
@@ -556,6 +661,9 @@ export const quizzes: Quiz[] = [
           'It only matters for frontend performance.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c6',
@@ -568,6 +676,9 @@ export const quizzes: Quiz[] = [
           'Reduce pricing to zero for expansion.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c7',
@@ -581,6 +692,9 @@ export const quizzes: Quiz[] = [
           'Delegating all technical work to others.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c8',
@@ -593,6 +707,9 @@ export const quizzes: Quiz[] = [
           'Code that compiles without tests.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c9',
@@ -605,6 +722,9 @@ export const quizzes: Quiz[] = [
           'It shifts all technical decisions to PMs.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c10',
@@ -617,6 +737,9 @@ export const quizzes: Quiz[] = [
           'Hidden error responses.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c11',
@@ -629,6 +752,9 @@ export const quizzes: Quiz[] = [
           'They avoid state management entirely.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c12',
@@ -641,6 +767,9 @@ export const quizzes: Quiz[] = [
           'Vue only works for static sites.',
         ],
         correctIndex: 0,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c13',
@@ -653,6 +782,9 @@ export const quizzes: Quiz[] = [
           'A browser cookie.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c14',
@@ -665,6 +797,9 @@ export const quizzes: Quiz[] = [
           'Only for routing.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c15',
@@ -677,6 +812,9 @@ export const quizzes: Quiz[] = [
           'A testing utility only.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c16',
@@ -689,6 +827,9 @@ export const quizzes: Quiz[] = [
           'A form validation library.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c17',
@@ -701,6 +842,9 @@ export const quizzes: Quiz[] = [
           'By disabling user input.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c18',
@@ -713,6 +857,9 @@ export const quizzes: Quiz[] = [
           'To secure API endpoints.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c19',
@@ -725,6 +872,9 @@ export const quizzes: Quiz[] = [
           'By avoiding all animations.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c20',
@@ -737,6 +887,9 @@ export const quizzes: Quiz[] = [
           'It applies only to mobile.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c21',
@@ -749,6 +902,9 @@ export const quizzes: Quiz[] = [
           'Because it only runs in the browser.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c22',
@@ -761,6 +917,9 @@ export const quizzes: Quiz[] = [
           'A message queue.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c23',
@@ -773,6 +932,9 @@ export const quizzes: Quiz[] = [
           'Django only supports NoSQL.',
         ],
         correctIndex: 0,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c24',
@@ -785,6 +947,9 @@ export const quizzes: Quiz[] = [
           'An API gateway.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c25',
@@ -797,6 +962,9 @@ export const quizzes: Quiz[] = [
           'By using plaintext passwords in URLs.',
         ],
         correctIndex: 0,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c26',
@@ -809,6 +977,9 @@ export const quizzes: Quiz[] = [
           'A log aggregation tool.',
         ],
         correctIndex: 1,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c27',
@@ -821,6 +992,9 @@ export const quizzes: Quiz[] = [
           'By skipping authorization checks.',
         ],
         correctIndex: 0,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c28',
@@ -833,6 +1007,9 @@ export const quizzes: Quiz[] = [
           'A type of encryption.',
         ],
         correctIndex: 0,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c29',
@@ -845,6 +1022,9 @@ export const quizzes: Quiz[] = [
           'By embedding secrets in client apps.',
         ],
         correctIndex: 0,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
       {
         id: 'c30',
@@ -857,6 +1037,9 @@ export const quizzes: Quiz[] = [
           'Disabling caching.',
         ],
         correctIndex: 0,
+        type: 'theory',
+        explanation: '',
+        codeSnippet: null,
       },
     ],
   },

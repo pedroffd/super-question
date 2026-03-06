@@ -94,7 +94,7 @@ export class QuizService {
     const quizData = quizRows[0]
 
     const questionsQuery = `
-      SELECT id, prompt, options, correct_index, position
+      SELECT id, prompt, options, correct_index, position, type, explanation, code_snippet
       FROM questions
       WHERE quiz_id = $1
       ORDER BY position ASC
@@ -124,6 +124,9 @@ export class QuizService {
           (entry: { option: string; index: number }) => entry.option,
         ),
         correctIndex: correctIndex === -1 ? 0 : correctIndex,
+        type: question.type || 'theory',
+        explanation: question.explanation || '',
+        codeSnippet: question.code_snippet || null,
       }
     })
 

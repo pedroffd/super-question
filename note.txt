@@ -1,0 +1,468 @@
+{
+  "questions": [
+    {
+      "topic": "product-thinking",
+      "question": "Choose a product, describe the difficulty of using it, and identify what is bad about it."
+    },
+    {
+      "topic": "product-thinking",
+      "question": "Take one of those bad aspects and compare it with similar products. Is it a product problem or an implementation problem?"
+    },
+    {
+      "topic": "product-thinking",
+      "question": "How would you initially solve the problem?"
+    },
+    {
+      "topic": "product-thinking",
+      "question": "How would you definitively solve the problem?"
+    },
+    {
+      "topic": "saas",
+      "question": "What does it mean to be a Fullstack Engineer in a B2B SaaS product?"
+    },
+    {
+      "topic": "saas",
+      "question": "What is the difference between B2B and B2C SaaS products?"
+    },
+    {
+      "topic": "architecture",
+      "question": "What is a service-oriented architecture?"
+    },
+    {
+      "topic": "architecture",
+      "question": "What is event-driven architecture?"
+    },
+    {
+      "topic": "architecture",
+      "question": "What does operating at scale mean?"
+    },
+    {
+      "topic": "architecture",
+      "question": "What is horizontal scalability?"
+    },
+    {
+      "topic": "architecture",
+      "question": "What is the difference between vertical and horizontal scalability?"
+    },
+    {
+      "topic": "architecture",
+      "question": "How do you improve reliability in distributed systems?"
+    },
+    {
+      "topic": "architecture",
+      "question": "What is consistency eventual in distributed systems?"
+    },
+    {
+      "topic": "architecture",
+      "question": "Where do performance bottlenecks usually appear in web applications?"
+    },
+    {
+      "topic": "observability",
+      "question": "Why is observability critical in SaaS platforms?"
+    },
+    {
+      "topic": "observability",
+      "question": "What metrics would you monitor in a production system?"
+    },
+    {
+      "topic": "observability",
+      "question": "What is the difference between logs and metrics?"
+    },
+    {
+      "topic": "observability",
+      "question": "How would you design observability for a distributed system?"
+    },
+    {
+      "topic": "leadership",
+      "question": "What responsibilities does a Senior Engineer have beyond coding?"
+    },
+    {
+      "topic": "leadership",
+      "question": "How do you balance individual contributor work with engineering leadership?"
+    },
+    {
+      "topic": "leadership",
+      "question": "How do you handle conflicts between product speed and engineering quality?"
+    },
+    {
+      "topic": "leadership",
+      "question": "How do you mentor engineers without micromanaging?"
+    },
+    {
+      "topic": "leadership",
+      "question": "How do you communicate technical trade-offs to non-technical stakeholders?"
+    },
+    {
+      "topic": "leadership",
+      "question": "How do you deal with ambiguity in engineering problems?"
+    },
+    {
+      "topic": "clean-code",
+      "question": "What is self-documenting code?"
+    },
+    {
+      "topic": "clean-code",
+      "question": "What is Clean Code?"
+    },
+    {
+      "topic": "clean-code",
+      "question": "What problems frustrate you the most when reading code?"
+    },
+    {
+      "topic": "solid",
+      "question": "What is SOLID and what is its purpose?"
+    },
+    {
+      "topic": "solid",
+      "question": "What is the Single Responsibility Principle?"
+    },
+    {
+      "topic": "solid",
+      "question": "How do SOLID principles help system maintainability?"
+    },
+    {
+      "topic": "javascript",
+      "question": "Explain var, let, and const."
+    },
+    {
+      "topic": "javascript",
+      "question": "What is hoisting in JavaScript?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What is the Temporal Dead Zone (TDZ)?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What is a closure?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What is currying?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What is the Event Loop and how does it work?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What are microtasks and macrotasks?"
+    },
+    {
+      "topic": "javascript",
+      "question": "How do Promises work?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What is the difference between Promise.all and Promise.allSettled?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What is callback hell?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What is the difference between == and ===?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What is the difference between null and undefined?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What is optional chaining?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What is destructuring?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What is the spread operator?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What is the difference between shallow copy and deep copy?"
+    },
+    {
+      "topic": "javascript",
+      "question": "What is the difference between copying primitives and objects?"
+    },
+    {
+      "topic": "javascript",
+      "question": "Why does setTimeout(fn,0) not execute immediately?"
+    },
+    {
+      "topic": "node",
+      "question": "How does the Event Loop work in Node.js?"
+    },
+    {
+      "topic": "node",
+      "question": "What happens when CPU-heavy code runs in Node.js?"
+    },
+    {
+      "topic": "node",
+      "question": "What is backpressure in Node.js?"
+    },
+    {
+      "topic": "node",
+      "question": "How does Node.js handle backpressure?"
+    },
+    {
+      "topic": "node",
+      "question": "What is caching and why is it important in Node.js applications?"
+    },
+    {
+      "topic": "node",
+      "question": "What types of cache exist in Node.js architectures?"
+    },
+    {
+      "topic": "node",
+      "question": "What is cache invalidation and why is it difficult?"
+    },
+    {
+      "topic": "node",
+      "question": "What is cache stampede and how do you avoid it?"
+    },
+    {
+      "topic": "react",
+      "question": "What made React so popular?"
+    },
+    {
+      "topic": "react",
+      "question": "What is the React Virtual DOM?"
+    },
+    {
+      "topic": "react",
+      "question": "What is reconciliation in React?"
+    },
+    {
+      "topic": "react",
+      "question": "What is a Single Page Application (SPA)?"
+    },
+    {
+      "topic": "react",
+      "question": "What is the difference between props and state?"
+    },
+    {
+      "topic": "react",
+      "question": "What is lifting state up?"
+    },
+    {
+      "topic": "react",
+      "question": "What is the key prop and why is it important?"
+    },
+    {
+      "topic": "react",
+      "question": "What is the difference between controlled and uncontrolled components?"
+    },
+    {
+      "topic": "react",
+      "question": "How can we optimize performance in React?"
+    },
+    {
+      "topic": "react",
+      "question": "How do you prevent unnecessary re-renders?"
+    },
+    {
+      "topic": "react",
+      "question": "What is React.memo?"
+    },
+    {
+      "topic": "react",
+      "question": "What is the difference between useMemo and useCallback?"
+    },
+    {
+      "topic": "react",
+      "question": "What is the dependency array in useEffect?"
+    },
+    {
+      "topic": "react",
+      "question": "What is the purpose of useRef?"
+    },
+    {
+      "topic": "react",
+      "question": "What is the difference between CSR and SSR?"
+    },
+    {
+      "topic": "react",
+      "question": "Why is SEO better with SSR?"
+    },
+    {
+      "topic": "react",
+      "question": "How would you implement infinite scrolling in React?"
+    },
+    {
+      "topic": "react",
+      "question": "How would you implement live search filtering in React?"
+    },
+    {
+      "topic": "react",
+      "question": "How would you design a multi-step form in React?"
+    },
+    {
+      "topic": "react",
+      "question": "How would you implement lazy loading of components?"
+    },
+    {
+      "topic": "api",
+      "question": "What is HTTP?"
+    },
+    {
+      "topic": "api",
+      "question": "What is HTTPS?"
+    },
+    {
+      "topic": "api",
+      "question": "What is a REST API?"
+    },
+    {
+      "topic": "api",
+      "question": "What defines a well-designed API?"
+    },
+    {
+      "topic": "api",
+      "question": "How would you design an endpoint for creating a resource?"
+    },
+    {
+      "topic": "api",
+      "question": "How would you design an endpoint for updating a resource?"
+    },
+    {
+      "topic": "api",
+      "question": "How do you version APIs?"
+    },
+    {
+      "topic": "api",
+      "question": "What is idempotency?"
+    },
+    {
+      "topic": "api",
+      "question": "What is rate limiting?"
+    },
+    {
+      "topic": "api",
+      "question": "How can API latency be reduced?"
+    },
+    {
+      "topic": "security",
+      "question": "How is API authentication typically handled?"
+    },
+    {
+      "topic": "security",
+      "question": "What is OAuth?"
+    },
+    {
+      "topic": "security",
+      "question": "What problem does OAuth solve?"
+    },
+    {
+      "topic": "security",
+      "question": "What is an access token?"
+    },
+    {
+      "topic": "security",
+      "question": "What is a refresh token?"
+    },
+    {
+      "topic": "security",
+      "question": "What is the difference between OAuth and OpenID Connect?"
+    },
+    {
+      "topic": "database",
+      "question": "What is an ORM?"
+    },
+    {
+      "topic": "database",
+      "question": "What are database migrations?"
+    },
+    {
+      "topic": "database",
+      "question": "What is a database transaction?"
+    },
+    {
+      "topic": "database",
+      "question": "What causes N+1 queries?"
+    },
+    {
+      "topic": "database",
+      "question": "What is the difference between PostgreSQL and MongoDB?"
+    },
+    {
+      "topic": "database",
+      "question": "When should PostgreSQL be preferred?"
+    },
+    {
+      "topic": "database",
+      "question": "When does MongoDB make sense?"
+    },
+    {
+      "topic": "devops",
+      "question": "What is Docker?"
+    },
+    {
+      "topic": "devops",
+      "question": "What is Kubernetes used for?"
+    },
+    {
+      "topic": "devops",
+      "question": "What is Terraform?"
+    },
+    {
+      "topic": "devops",
+      "question": "Why is Infrastructure as Code important?"
+    },
+    {
+      "topic": "devops",
+      "question": "What is CI/CD?"
+    },
+    {
+      "topic": "devops",
+      "question": "How do you implement zero-downtime deployments?"
+    },
+    {
+      "topic": "devops",
+      "question": "What is your rollback strategy during a bad deploy?"
+    },
+    {
+      "topic": "system-design",
+      "question": "Design a SaaS platform architecture including frontend, backend, databases, and messaging."
+    },
+    {
+      "topic": "system-design",
+      "question": "Would you start with a monolith or microservices and why?"
+    },
+    {
+      "topic": "system-design",
+      "question": "How would you design a real-time messaging system?"
+    },
+    {
+      "topic": "system-design",
+      "question": "How would you design multi-tenancy in a SaaS platform?"
+    },
+    {
+      "topic": "system-design",
+      "question": "How would you prevent one tenant from affecting others?"
+    },
+    {
+      "topic": "system-design",
+      "question": "How would you design a system to support users across many countries with low latency?"
+    },
+    {
+      "topic": "system-design",
+      "question": "How would you design analytics pipelines without affecting transactional workloads?"
+    },
+    {
+      "topic": "ddd",
+      "question": "What is Domain Driven Design (DDD)?"
+    },
+    {
+      "topic": "ddd",
+      "question": "When should you use DDD?"
+    },
+    {
+      "topic": "ddd",
+      "question": "What are the core concepts of DDD?"
+    }
+  ]
+}
