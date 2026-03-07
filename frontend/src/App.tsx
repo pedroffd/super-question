@@ -24,6 +24,8 @@ import {
   useRef,
   useState,
 } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 type JobCard = {
   id: string
@@ -96,6 +98,7 @@ function App() {
   const [showPartial, setShowPartial] = useState(false)
   const [showExplanation, setShowExplanation] = useState(false)
   const [showCode, setShowCode] = useState(false)
+  const [isLearningMode, setIsLearningMode] = useState(false)
 
   const autoAdvanceLock = useRef(0)
 
@@ -216,12 +219,14 @@ function App() {
     if (phase !== 'quiz' || !quiz) return
 
     const interval = window.setInterval(() => {
-      setTotalLeft((prev) => (prev > 0 ? prev - 1 : 0))
-      setQuestionLeft((prev) => (prev > 0 ? prev - 1 : 0))
+      if (!isLearningMode) {
+        setTotalLeft((prev) => (prev > 0 ? prev - 1 : 0))
+        setQuestionLeft((prev) => (prev > 0 ? prev - 1 : 0))
+      }
     }, 1000)
 
     return () => window.clearInterval(interval)
-  }, [phase, quiz])
+  }, [isLearningMode, phase, quiz])
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: reset on index change
   useEffect(() => {
@@ -253,18 +258,18 @@ function App() {
 
       setCurrentIndex((prev) => prev + 1)
       setQuestionLeft(quiz.perQuestionSeconds)
-      setShowExplanation(false)
+      setShowExplanation(isLearningMode) // Auto-show explanation in learning mode
       setShowCode(false)
     },
-    [currentIndex, finishQuiz, quiz],
+    [currentIndex, finishQuiz, quiz, isLearningMode],
   )
 
   useEffect(() => {
     if (phase !== 'quiz' || !quiz) return
-    if (questionLeft === 0) {
+    if (!isLearningMode && questionLeft === 0) {
       advanceQuestion(true)
     }
-  }, [advanceQuestion, phase, questionLeft, quiz])
+  }, [advanceQuestion, phase, questionLeft, quiz, isLearningMode])
 
   const handleSelectJob = (job: JobCard) => {
     if (job.status !== 'active') return
@@ -272,7 +277,7 @@ function App() {
     setPhase('intro')
   }
 
-  const handleStartQuiz = async () => {
+  const handleStartQuiz = useCallback(async () => {
     if (!selectedJob) return
     try {
       setIsQuizLoading(true)
@@ -288,6 +293,7 @@ function App() {
       setTotalLeft(data.timeLimitSeconds)
       setQuestionLeft(data.perQuestionSeconds)
       autoAdvanceLock.current = -1
+      setShowExplanation(isLearningMode)
       setPhase('quiz')
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Failed to load quiz'
@@ -296,7 +302,7 @@ function App() {
     } finally {
       setIsQuizLoading(false)
     }
-  }
+  }, [selectedJob, isLearningMode])
 
   const handleAnswer = (index: number) => {
     setAnswers((prev) => {
@@ -434,6 +440,29 @@ function App() {
                   <li>Final result with score percentage.</li>
                 </ul>
               </div>
+              <div className="flex items-center gap-2 rounded-lg border border-panel bg-panel p-4">
+                <button
+                  type="button"
+                  onClick={() => setIsLearningMode(!isLearningMode)}
+                  className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                    isLearningMode ? 'bg-emerald-500' : 'bg-subtle/20'
+                  }`}
+                >
+                  <span
+                    className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                      isLearningMode ? 'translate-x-5' : 'translate-x-0'
+                    }`}
+                  />
+                </button>
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium text-app">
+                    Learning Mode
+                  </span>
+                  <span className="text-xs text-subtle">
+                    No timers, auto-show explanations.
+                  </span>
+                </div>
+              </div>
               <div className="flex flex-wrap gap-3">
                 <Button onClick={handleStartQuiz} disabled={isQuizLoading}>
                   {isQuizLoading ? 'Loading...' : 'Start quiz'}
@@ -479,9 +508,16 @@ function App() {
                 <span className="rounded-full bg-panel px-3 py-1">
                   Question {currentIndex + 1} of {totalQuestions}
                 </span>
-                <span className="rounded-full bg-panel px-3 py-1">
-                  {formatTime(questionLeft)} per question
-                </span>
+                {!isLearningMode && (
+                  <span className="rounded-full bg-panel px-3 py-1">
+                    {formatTime(questionLeft)} per question
+                  </span>
+                )}
+                {isLearningMode && (
+                  <span className="rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 lowercase">
+                    learning mode
+                  </span>
+                )}
               </div>
               <div className="space-y-3">
                 <h2 className="text-xl font-semibold text-app">
@@ -533,25 +569,25 @@ function App() {
                   </div>
                 )}
 
-                {currentQuestion.type === 'theory' &&
-                  answers[currentIndex] !== null && (
-                    <div className="mt-4 border-t border-card pt-4">
-                      {showExplanation ? (
-                        <div className="rounded-lg bg-panel p-4 text-sm text-app">
-                          <p className="font-semibold mb-2">Explanation:</p>
-                          <p>{currentQuestion.explanation}</p>
-                        </div>
-                      ) : (
-                        <Button
-                          variant="secondary"
-                          onClick={() => setShowExplanation(true)}
-                          className="w-full"
-                        >
-                          Show Explanation
-                        </Button>
-                      )}
-                    </div>
-                  )}
+                {currentQuestion.type === 'theory' && (
+                  <div className="mt-4 border-t border-card pt-4">
+                    {showExplanation ? (
+                      <div className="rounded-lg bg-panel p-6 text-sm text-app prose prose-invert max-w-none">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          {currentQuestion.explanation}
+                        </ReactMarkdown>
+                      </div>
+                    ) : (
+                      <Button
+                        variant="secondary"
+                        onClick={() => setShowExplanation(true)}
+                        className="w-full"
+                      >
+                        Show Explanation
+                      </Button>
+                    )}
+                  </div>
+                )}
               </div>
             </CardContent>
             <CardFooter className="justify-between">
@@ -576,27 +612,41 @@ function App() {
               <CardDescription>Time control</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="rounded-lg border border-panel bg-panel p-4">
-                <div className="flex items-center gap-2 text-sm text-subtle">
-                  <Clock className="h-4 w-4" />
-                  Overall time
+              {!isLearningMode ? (
+                <>
+                  <div className="rounded-lg border border-panel bg-panel p-4">
+                    <div className="flex items-center gap-2 text-sm text-subtle">
+                      <Clock className="h-4 w-4" />
+                      Overall time
+                    </div>
+                    <p className="mt-2 text-2xl font-semibold text-app">
+                      {formatTime(totalLeft)}
+                    </p>
+                  </div>
+                  <div className="rounded-lg border border-panel bg-panel p-4">
+                    <div className="flex items-center gap-2 text-sm text-subtle">
+                      <GraduationCap className="h-4 w-4" />
+                      Question time
+                    </div>
+                    <p className="mt-2 text-2xl font-semibold text-app">
+                      {formatTime(questionLeft)}
+                    </p>
+                  </div>
+                  <div className="text-xs text-subtle">
+                    When time expires, the question advances automatically.
+                  </div>
+                </>
+              ) : (
+                <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-4">
+                  <p className="text-sm font-medium text-emerald-400">
+                    Timers disabled
+                  </p>
+                  <p className="mt-1 text-xs text-subtle">
+                    You are studying in Learning Mode. Take your time to
+                    understand the explanations.
+                  </p>
                 </div>
-                <p className="mt-2 text-2xl font-semibold text-app">
-                  {formatTime(totalLeft)}
-                </p>
-              </div>
-              <div className="rounded-lg border border-panel bg-panel p-4">
-                <div className="flex items-center gap-2 text-sm text-subtle">
-                  <GraduationCap className="h-4 w-4" />
-                  Question time
-                </div>
-                <p className="mt-2 text-2xl font-semibold text-app">
-                  {formatTime(questionLeft)}
-                </p>
-              </div>
-              <div className="text-xs text-subtle">
-                When time expires, the question advances automatically.
-              </div>
+              )}
               <Button
                 variant="secondary"
                 className="w-full"

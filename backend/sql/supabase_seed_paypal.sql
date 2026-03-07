@@ -58,7 +58,27 @@ values
     2,
     1,
     'theory',
-    'Selectors (especially memoized ones using libraries like Reselect) help performance by ensuring that components only re-render when the specific slice of state they need actually changes. They also encapsulate state structure, making it easier to refactor state without changing every component.',
+    '### 🎯 O Poder dos Selectors
+Em aplicações **Redux de larga escala**, os Selectors são fundamentais para manter a performance e a organização.
+
+#### Por que usar?
+1.  **Memoização (Reselect):** Evita cálculos caros se o estado não mudou. O componente só renderiza se o *resultado* do seletor mudar.
+2.  **Encapsulamento:** Os componentes não precisam saber a estrutura exata do estado. Se você mudar o formato do seu "store", só altera o seletor.
+3.  **Composição:** Você pode combinar seletores simples para criar dados complexos e derivados.
+
+```javascript
+// Exemplo com Reselect
+const selectUser = state => state.user;
+const selectTransactions = state => state.transactions;
+
+export const selectUserTotalBalance = createSelector(
+  [selectTransactions],
+  (txns) => txns.reduce((acc, t) => acc + t.amount, 0)
+);
+```
+
+> [!TIP]
+> Use seletores sempre que precisar de dados "calculados" a partir do estado bruto.',
     null
   ),
   (
@@ -69,7 +89,26 @@ values
     -1,
     2,
     'code',
-    'Testing your understanding of useRef and useEffect. useRef is perfect here because it persists values across renders without triggering a re-render when the value changes.',
+    '### 🧩 Desvendando o `usePrevious`
+Este é um teste clássico de entendimento do ciclo de vida do React e do comportamento do `useRef`.
+
+#### Como funciona?
+1.  **`useRef` para persistência:** O valor no `ref.current` persiste entre renderizações sem disparar um novo ciclo de renderização quando alterado.
+2.  **`useEffect` para o "atraso":** O efeito é executado **após** a renderização. Ou seja, ele salva o valor atual no ref *depois* que o componente já renderizou e retornou o valor antigo do ref.
+
+```javascript
+function usePrevious(value) {
+  const ref = useRef();
+  
+  useEffect(() => {
+    ref.current = value; // Atualiza DEPOIS da renderização
+  }, [value]);
+  
+  return ref.current; // Retorna o valor de ANTES da atualização do useEffect
+}
+```
+
+Este padrão é útil para comparar props antigas com novas em lógica de transição ou animação.',
     $$import { useEffect, useRef } from 'react';
 
 function usePrevious(value) {
@@ -90,7 +129,23 @@ function usePrevious(value) {
     1,
     3,
     'theory',
-    'getBy* queries expect the element to be present immediately and throw an error if it isn''t. findBy* is a combination of getBy* and waitFor, making it the standard way to handle asynchronous elements in testing.',
+    '### 🧪 Testes Assíncronos no RTL
+Entender a diferença entre `get`, `query` e `find` é essencial para qualquer desenvolvedor Senior.
+
+| Prefixo | Espera? | Erra se não achar? | Uso Principal |
+| :--- | :--- | :--- | :--- |
+| **getBy** | Não | Sim | Elementos estáticos (títulos, botões fixos) |
+| **queryBy** | Não | Não (null) | Verificar que algo **NÃO** está na tela |
+| **findBy** | **Sim** | Sim (timeout) | Dados que vêm de APIs ou timers |
+
+```javascript
+// Jeito Certo (Assíncrono)
+const user = await screen.findByText(/pedro/i);
+expect(user).toBeInTheDocument();
+```
+
+> [!IMPORTANT]
+> `findBy` é basicamente um `waitFor` + `getBy` encapsulados.',
     null
   ),
   (
@@ -101,7 +156,21 @@ function usePrevious(value) {
     -1,
     4,
     'code',
-    'Demonstrating proficiency in mocking modules and handling async tests. Critical for PayPal''s requirement for "comprehensive unit and integration tests".',
+    '### 🤡 Mocking com Jest
+Mocks são cruciais para testes de integração rápidos e determinísticos. Você não quer bater na API real durante o teste.
+
+#### Pontos Chave:
+1.  **`jest.mock(''axios'')`:** Diz ao Jest para substituir o módulo real por um objeto de mock.
+2.  **`mockResolvedValueOnce`:** Configura o que o axios deve retornar especificamente para este teste.
+3.  **`waitFor`:** Dá tempo ao React para processar a promessa e re-renderizar o componente com os dados.
+
+```javascript
+test(''exemplo de sucesso'', async () => {
+  axios.get.mockResolvedValueOnce({ data: { name: ''PayPal'' } });
+  render(<MyComp />);
+  const text = await screen.findByText(''PayPal'');
+});
+```',
     $$import { render, screen, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import MyComponent from './MyComponent';
@@ -127,7 +196,20 @@ test('fetches and displays user data', async () => {
     2,
     5,
     'theory',
-    'Express recognizes error-handling middleware specifically by the number of arguments (4). It allows you to centralize error logic, ensuring your API consistently returns correct status codes and JSON error bodies instead of crashing or leaking stack traces.',
+    '### 🛡️ Tratamento de Erros Estruturado
+O middleware de erro do Express é único porque possui **quatro argumentos** em vez de três.
+
+```javascript
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send({ error: ''Algo deu errado!'' });
+});
+```
+
+#### Por que centralizar?
+- **Segurança:** Evita vazar mensagens técnicas (stack traces) para o cliente.
+- **Consistência:** Garante que todos os erros retornem o mesmo formato JSON.
+- **Manutenibilidade:** Você altera a lógica de LOG ou notificação em um só lugar.',
     null
   ),
   (
@@ -138,7 +220,26 @@ test('fetches and displays user data', async () => {
     2,
     6,
     'theory',
-    'Unlike var, let and const are not initialized with undefined when hoisted. They exist in the TDZ from the start of the block until the line where they are declared. This helps catch bugs caused by using variables before they have been defined.',
+    '### 💀 Temporal Dead Zone (TDZ)
+A TDZ é um comportamento introduzido no ES6 para tornar o código mais previsível e evitar os "erros silenciosos" do `var`.
+
+#### Com `var`:
+Ocorre o *hoisting* e a variável é inicializada como `undefined`. Acessá-la antes da linha de declaração **não** dá erro.
+
+#### Com `let` / `const`:
+A variável sofre *hoisting*, mas **NÃO** é inicializada. Ela entra na TDZ.
+
+```javascript
+{
+  // --- Início da TDZ ---
+  console.log(x); // REFERENCE ERROR!
+  // ...
+  let x = 10;     // --- Fim da TDZ ---
+}
+```
+
+> [!NOTE]
+> Isso força uma boa prática de declarar variáveis antes de usá-las.',
     null
   ),
   (
@@ -149,7 +250,86 @@ test('fetches and displays user data', async () => {
     1,
     7,
     'theory',
-    'Rendering thousands of DOM nodes is expensive and leads to "jank". List virtualization solves this by keeping only a small number of nodes in the DOM and swapping their content as the user scrolls. This is essential for a "Senior Fullstack Frontend" role at a company like PayPal.',
+    '### 💡 Explicação
+Quando você tem **milhares de itens em uma lista**, o maior problema não é apenas os dados, mas **quantos elementos DOM o navegador precisa renderizar**.
+
+Se você fizer algo como:
+```javascript
+transactions.map(t => <TransactionItem />)
+```
+e tiver **10.000 itens**, o React e o browser vão:
+- criar **10.000 elementos DOM**
+- calcular layout
+- pintar tudo na tela
+- manter isso na memória
+
+Isso **destrói a performance**.
+
+---
+
+### 🚀 A solução: Virtualização (Windowing)
+A ideia é simples:
+👉 Renderizar **apenas os itens visíveis na tela**.
+
+Se o usuário vê apenas **10 itens**, o sistema renderiza **10-20**, não **10.000**.
+Quando o usuário faz scroll:
+- os itens antigos são removidos
+- novos itens são renderizados
+
+Ou seja:
+`DOM pequeno + scroll simulado`
+
+---
+
+### 📊 Exemplo prático
+**Sem virtualização:**
+- Lista com 10.000 itens
+- DOM = 10.000 elementos
+- Performance ruim
+
+**Com virtualização:**
+- Lista com 10.000 itens
+- DOM = ~20 elementos
+
+---
+
+### 🧠 Exemplo com `react-window`
+```typescript
+import { FixedSizeList as List } from ''react-window''
+
+<List
+  height={500}
+  itemCount={10000}
+  itemSize={50}
+  width="100%"
+>
+  {({ index, style }) => (
+    <div style={style}>
+      Transaction {index}
+    </div>
+  )}
+</List>
+```
+**O que acontece:**
+- Só os itens visíveis são renderizados
+- Scroll continua funcionando
+- Performance melhora drasticamente
+
+---
+
+### ❌ Por que as outras estão erradas?
+- **A — Diminuir fonte:** Não resolve o problema do **DOM grande**.
+- **B — Desabilitar JavaScript:** Impossível na prática e não resolve renderização.
+- **D — Converter em JPG:** Perde interatividade e não resolve scroll.
+- **E — display: none:** Os elementos **ainda existem no DOM**, então o custo continua.
+
+---
+
+### 🧠 Dica de entrevista (muito importante)
+Se essa pergunta aparecer numa entrevista, a resposta ideal inclui palavras como:
+- **List Virtualization**
+- **Windowing**
+- **Recycling DOM nodes**',
     null
   )
 on conflict (id) do update set
